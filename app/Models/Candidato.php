@@ -24,4 +24,12 @@ class Candidato extends Model
     public function vagaEmpregos(){
         return $this->belongsToMany('App\Models\VagaEmprego','candidato_vaga_empregos','candidato_id','vaga_id');
     }
+
+    public function curriculo(){
+        return $this->hasOne('App\Models\Curriculo');
+    }
+
+    public function portfolio(){
+        return $this->hasOne('App\Models\Porfolio');
+    }
 }
