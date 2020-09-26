@@ -29,4 +29,12 @@ class CandidatoFactory extends Factory
             'senha' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         ];
     }
+    public function configure()
+    {
+        return $this->afterMaking(function (Candidato $candidato){
+            //
+        })->afterCreating(function (Candidato $candidato){
+            //
+        });
+    }
 }
