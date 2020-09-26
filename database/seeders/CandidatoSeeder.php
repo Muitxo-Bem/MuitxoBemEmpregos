@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Candidato;
 use App\Models\Endereco;
+use App\Models\Portfolio;
 use Illuminate\Database\Seeder;
 
 class CandidatoSeeder extends Seeder
@@ -18,6 +19,7 @@ class CandidatoSeeder extends Seeder
         Candidato::factory()
                     ->times(50)
                     ->has(Endereco::factory()->count(1))
+                    ->has(Portfolio::factory()->count(1))
                     ->create();
     }
 }
