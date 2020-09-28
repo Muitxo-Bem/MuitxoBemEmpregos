@@ -30,6 +30,6 @@ class Candidato extends Model
     }
 
     public function portfolio(){
-        return $this->hasOne('App\Models\Porfolio');
+        return $this->hasOne('App\Models\Portfolio');
     }
 }

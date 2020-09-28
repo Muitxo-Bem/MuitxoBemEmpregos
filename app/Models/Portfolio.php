@@ -9,7 +9,7 @@ class Portfolio extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['Link'];
+    protected $fillable = ['candidato_id','link'];
 
     public function dono(){
         return $this->belongsTo('App\Models\Candidato','candidato_id');
