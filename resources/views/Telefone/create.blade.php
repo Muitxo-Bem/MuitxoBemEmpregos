@@ -30,6 +30,11 @@
             
             <button type='submit'>Cadastrar</button>
         </form>
+        @if($errors->any())
+        @foreach ($errors->all() as $item)
+            <div>{{$item}}</div>
+        @endforeach
+        @endif
     </div>
 </body>
 
