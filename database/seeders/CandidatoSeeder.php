@@ -21,6 +21,7 @@ class CandidatoSeeder extends Seeder
                     ->has(Endereco::factory()->count(1))
                     ->has(Portfolio::factory()->count(1))
                     ->has(Telefone::factory()->count(1))
+                    ->has(Curriculo::factory()->count(1))
                     ->create();
     }
 }
