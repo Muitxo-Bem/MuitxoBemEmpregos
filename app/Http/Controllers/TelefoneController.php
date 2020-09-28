@@ -35,12 +35,15 @@ class TelefoneController extends Controller
      */
     public function store(Request $request)
     {
-        $newTelefone = new Telefone();
-        $newTelefone->empregador_id = $request->empregador_id;
-        $newTelefone->candidato_id = $request->candidato_id ;
-        $newTelefone->telefone_primario = $request->telefone_primario;
-        $newTelefone->telefone_secundario = $request->telefone_secundario;
-        $newTelefone->save();
+        try {
+            \App\Validator\TelefoneValidator::validate($request->all());
+            $dados = $request->all();
+            \App\Models\Telefone::create($dados);
+            return 'Telefone Criado';
+        }catch (\App\Validator\ValidationException $e){
+            return redirect(route('telefones.create'))->withErrors($e->getValidator())->withInput();
+        }
+        
     }
 
     /**
