@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Empregador;
+use App\Models\Telefone;
 use Illuminate\Database\Seeder;
 
 class EmpregadorSeeder extends Seeder
@@ -13,6 +15,9 @@ class EmpregadorSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Empregador::factory()
+                    ->times(50)
+                    ->has(Telefone::factory()->count(1))
+                    ->create();
     }
 }

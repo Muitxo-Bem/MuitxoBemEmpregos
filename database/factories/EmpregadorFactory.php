@@ -6,7 +6,7 @@ use App\Models\Empregador;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class ModelFactory extends Factory
+class EmpregadorFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
