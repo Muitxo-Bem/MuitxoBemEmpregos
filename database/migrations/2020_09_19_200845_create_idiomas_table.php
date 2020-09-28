@@ -15,7 +15,7 @@ class CreateIdiomasTable extends Migration
     {
         Schema::create('idiomas', function (Blueprint $table) {
             $table->unsignedBigInteger('curriculo_id');
-            $table->string('Nome');
+            $table->string('idioma');
 
             $table->timestamps();
 

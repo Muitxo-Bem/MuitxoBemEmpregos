@@ -17,9 +17,9 @@ class CreateCurriculosTable extends Migration
             $table->unsignedBigInteger('candidato_id');
             $table->id();
             $table->timestamps();
-            $table->string('Info_Adicional');
+            $table->string('info_adicional');
             //$table->blob('pdf');
-            $table->string('Experiencia');
+            $table->string('experiencia');
 
 
             $table->foreign('candidato_id')->references('id')->on('candidatos');

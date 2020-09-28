@@ -16,7 +16,7 @@ class CreateAreaFormacaosTable extends Migration
         Schema::create('area_formacaos', function (Blueprint $table) {
             $table->unsignedBigInteger('curriculo_id');
             $table->id();
-            $table->String('Nome');
+            $table->String('area');
 
             $table->timestamps();
 
