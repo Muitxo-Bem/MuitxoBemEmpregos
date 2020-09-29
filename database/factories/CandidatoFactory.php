@@ -6,6 +6,8 @@ use App\Models\Candidato;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
+
+
 class CandidatoFactory extends Factory
 {
     /**
