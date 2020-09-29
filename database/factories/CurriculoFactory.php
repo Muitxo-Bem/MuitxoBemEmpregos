@@ -27,7 +27,7 @@ class CurriculoFactory extends Factory
                 return Candidato::factory()->create()->id;
             },
             'info_adicional' => $this->faker->sentence($nbWords = 8, $variableNbWords = true),
-            'experiecnia' => $this->faker->sentence($nbWords = 8, $variableNbWords = true),
+            'experiencia' => $this->faker->sentence($nbWords = 8, $variableNbWords = true),
 
         ];
     }

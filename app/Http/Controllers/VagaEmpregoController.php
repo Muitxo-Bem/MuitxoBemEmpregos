@@ -35,17 +35,14 @@ class VagaEmpregoController extends Controller
      */
     public function store(Request $request)
     {
-        $newVagaEmprego = new VagaEmprego();
-        $newVagaEmprego->nome = $request->nome;
-        $newVagaEmprego->descricao = $request->descricao ;
-        $newVagaEmprego->quantidade_de_vagas = $request->quantidade_de_vagas;
-        $newVagaEmprego->local_de_trabalho = $request->local_de_trabalho;
-        $newVagaEmprego->requisitos = $request->requisitos;
-        $newVagaEmprego->faixa_salarial = $request->faixa_salarial;
-        $newVagaEmprego->ativa = true;
-        $newVagaEmprego->diferenciais = $request->diferenciais;
-        $newVagaEmprego->empregador_id = $request->empregador_id;
-        $newVagaEmprego->save();
+        try{
+            \App\Validator\VagaEmpregoValidator::validate($request->all());
+            $dados = $request->all();
+            \App\Models\VagaEmprego::create($dados);
+            return 'Vaga Criada';
+        }catch (\App\Validator\ValidationException $e){
+            return redirect(route('vagas.create'))->withErrors($e->getValidator())->withInput();
+        }
     }
 
     /**
