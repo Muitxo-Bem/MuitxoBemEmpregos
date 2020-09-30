@@ -22,7 +22,7 @@ class CreateVagaEmpregosTable extends Migration
             $table->text('local_de_trabalho');
             $table->text('requisitos');
             $table->double('faixa_salarial')->unsigned();
-            $table->boolean('ativa');
+            $table->boolean('ativa')->default(true);
             $table->text('diferenciais')->nullable();
 
             $table->foreign('empregador_id')->references('id')->on('empregadors');

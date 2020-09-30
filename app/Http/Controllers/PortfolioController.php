@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\VagaEmprego;
+use App\Models\Portfolio;
 use Illuminate\Http\Request;
 
-class VagaEmpregoController extends Controller
+class PortfolioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class VagaEmpregoController extends Controller
      */
     public function index()
     {
-        return view('VagaEmprego.index')->with('vagas',VagaEmprego::all());
+        return view('Portfolio.index')->with('portfolios',Portfolio::all());
     }
 
     /**
@@ -24,7 +24,7 @@ class VagaEmpregoController extends Controller
      */
     public function create()
     {
-        return view('VagaEmprego.create');
+        return view('Portfolio.create');
     }
 
     /**
@@ -36,22 +36,22 @@ class VagaEmpregoController extends Controller
     public function store(Request $request)
     {
         try{
-            \App\Validator\VagaEmpregoValidator::validate($request->all());
+            \App\Validator\PortfolioValidator::validate($request->all());
             $dados = $request->all();
-            \App\Models\VagaEmprego::create($dados);
-            return 'Vaga Criada';
-        }catch (\App\Validator\ValidationException $e){
-            return redirect(route('vagas.create'))->withErrors($e->getValidator())->withInput();
+            \App\Models\Portfolio::create($dados);
+            return 'Portfolio Criado';
+        }catch (\App\Validator\ValidationException $e) {
+            return redirect(route('portfolios.create'))->withErrors($e->getValidator())->withInput();
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\VagaEmprego  $vagaEmprego
+     * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function show(VagaEmprego $vagaEmprego)
+    public function show(Portfolio $portfolio)
     {
         //
     }
@@ -59,10 +59,10 @@ class VagaEmpregoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\VagaEmprego  $vagaEmprego
+     * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function edit(VagaEmprego $vagaEmprego)
+    public function edit(Portfolio $portfolio)
     {
         //
     }
@@ -71,10 +71,10 @@ class VagaEmpregoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\VagaEmprego  $vagaEmprego
+     * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VagaEmprego $vagaEmprego)
+    public function update(Request $request, Portfolio $portfolio)
     {
         //
     }
@@ -82,10 +82,10 @@ class VagaEmpregoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\VagaEmprego  $vagaEmprego
+     * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VagaEmprego $vagaEmprego)
+    public function destroy(Portfolio $portfolio)
     {
         //
     }

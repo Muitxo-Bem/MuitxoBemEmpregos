@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Candidato;
 use App\Models\Endereco;
 use App\Models\Portfolio;
+use App\Models\Telefone;
+use App\Models\Curriculo;
 use Illuminate\Database\Seeder;
 
 class CandidatoSeeder extends Seeder
