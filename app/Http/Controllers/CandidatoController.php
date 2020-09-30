@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Candidato;
+use Hash;
 use Illuminate\Http\Request;
 
 class CandidatoController extends Controller
@@ -35,13 +36,17 @@ class CandidatoController extends Controller
      */
     public function store(Request $request)
     {
-        $newCandidato = new Candidato();
-        $newCandidato->nome = $request->nome;
-        $newCandidato->cpf = $request->cpf ;
-        $newCandidato->email = $request->email;
-        $newCandidato->senha = $request->senha;
-        $newCandidato->save();
-
+        try{
+            \App\Validator\CandidatoValidator::validate($request->all());
+            $dados = $request->all();
+            $dados['senha'] = Hash::make($dados['senha']);
+            \App\Models\Candidato::create($dados);
+            return 'Candidato cadastrado';
+        }catch(\App\Validator\ValidationException $exception){
+            return redirect(route('candidatos.create'))
+            ->withErrors($exception->getValidator())
+            ->withInput();
+        }
     }
 
     /**

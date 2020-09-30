@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Hash;
+
 use App\Models\Empregador;
 use Illuminate\Http\Request;
 
@@ -35,12 +37,17 @@ class EmpregadorController extends Controller
      */
     public function store(Request $request)
     {
-        $newEmpregador = new Empregador();
-        $newEmpregador->nome = $request->nome;
-        $newEmpregador->cpf = $request->cpf ;
-        $newEmpregador->email = $request->email;
-        $newEmpregador->senha = $request->senha;
-        $newEmpregador->save();
+        try{
+            \App\Validator\EmpregadorValidator::validate($request->all());
+            $dados = $request->all();
+            $dados['senha'] = Hash::make($dados['senha']);
+            \App\Models\Empregador::create($dados);
+            return 'Empregador cadastrado';
+        }catch(\App\Validator\ValidationException $exception){
+            return redirect(route('empregadores.create'))
+            ->withErrors($exception->getValidator())
+            ->withInput();
+        }
     }
 
     /**
