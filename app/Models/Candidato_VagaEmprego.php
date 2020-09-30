@@ -9,12 +9,13 @@ class Candidato_VagaEmprego extends Model
 {
     use HasFactory;
     protected $fillable = ['candidato_id','vaga_id'];
+    protected $table = 'candidato_vaga_empregos';
 
     public function candidatos(){
 
     }
 
     public function vagas(){
-        
+
     }
 }

@@ -3,11 +3,15 @@
 namespace Database\Seeders;
 
 use App\Models\Candidato;
+use App\Models\Telefone;
+use App\Models\Curriculo;
 use App\Models\Endereco;
 use App\Models\Portfolio;
 use App\Models\Telefone;
 use App\Models\Curriculo;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Factories\CandidatoFactory;
+
 
 class CandidatoSeeder extends Seeder
 {
