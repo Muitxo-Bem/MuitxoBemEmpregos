@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Candidato_VagaEmprego;
 use Illuminate\Database\Seeder;
-use App\Models\VagaEmprego;
 
-class VagaEmpregoSeeder extends Seeder
+class Candidato_VagaEmpregoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,9 @@ class VagaEmpregoSeeder extends Seeder
      */
     public function run()
     {
-        VagaEmprego::factory()
-                ->times(50)
-                ->create();
+        Candidato_VagaEmprego::factory()
+            ->times(50)
+            ->create();
         //
     }
 }

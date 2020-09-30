@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Candidato;
 use App\Models\Empregador;
 use App\Models\VagaEmprego;
 use Illuminate\Database\Eloquent\Factories\Factory;

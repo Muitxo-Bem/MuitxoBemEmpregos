@@ -25,10 +25,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="183939bc-764b-4353-823e-2447b4e16fd3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/CandidatoFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/CandidatoFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/CandidatoSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/CandidatoSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Candidato_VagaEmprego.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Candidato_VagaEmprego.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/VagaEmpregoFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/VagaEmpregoFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/VagaEmpregoSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/VagaEmpregoSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +187,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601410285119</updated>
       <workItem from="1601410287097" duration="3579000" />
-      <workItem from="1601414350831" duration="5698000" />
+      <workItem from="1601414350831" duration="11260000" />
     </task>
     <servers />
   </component>
@@ -207,10 +207,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="413" y="74" width="528" height="486" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601418974726">
+    <state x="413" y="74" width="528" height="486" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601423026535">
       <screen x="0" y="0" width="1360" height="632" />
     </state>
-    <state x="413" y="74" width="528" height="486" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1360.632@0.0.1360.632" timestamp="1601418974726" />
+    <state x="413" y="74" width="528" height="486" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1360.632@0.0.1360.632" timestamp="1601423026535" />
     <state x="368" y="41" width="617" height="552" key="NewPhpClassDialog" timestamp="1601418192713">
       <screen x="0" y="0" width="1360" height="632" />
     </state>
