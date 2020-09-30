@@ -35,17 +35,15 @@ class EnderecoController extends Controller
      */
     public function store(Request $request)
     {
-        $newEndereco = new Endereco();
-
-        $newEndereco->candidato_id = $request->candidato_id;
-        $newEndereco->bairro = $request->bairro;
-        $newEndereco->numero = $request->numero ;
-        $newEndereco->cep = $request->cep;
-        $newEndereco->estado = $request->estado;
-        $newEndereco->cidade = $request->cidade;
-        $newEndereco->rua = $request->rua;
-        
-        $newEndereco->save();    }
+       try{
+           \App\Validator\EnderecoValidator::validate($request->all());
+           $dados = $request->all();
+           \App\Models\Endereco::create($dados);
+           return 'Endereco Criado';
+       }catch(\App\Validator\ValidationException $e){
+           return redirect(route('enderecos.create'))->withErrors($e->getValidator())->withInput();
+       }
+    }
 
     /**
      * Display the specified resource.
