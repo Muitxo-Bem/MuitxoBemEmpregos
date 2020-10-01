@@ -26,3 +26,4 @@ Route::resource('telefones','App\Http\Controllers\TelefoneController');
 Route::resource('empregadores','App\Http\Controllers\EmpregadorController');
 Route::resource('vagas','App\Http\Controllers\VagaEmpregoController');
 Route::resource('portfolios','App\Http\Controllers\PortfolioController');
+Route::resource('curriculos','App\Http\Controllers\CurriculoController');
