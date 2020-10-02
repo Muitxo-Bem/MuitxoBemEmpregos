@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Curriculo;
+use App\Models\Idioma;
+use App\Models\AreaFormacao;
 
 class CurriculoSeeder extends Seeder
 {
