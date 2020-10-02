@@ -19,7 +19,7 @@ class CandidatoSeeder extends Seeder
     public function run()
     {
         Candidato::factory()
-                    ->times(50)
+                    ->times(1)
                     ->has(Endereco::factory()->count(1))
                     ->has(Portfolio::factory()->count(1))
                     ->has(Telefone::factory()->count(1))

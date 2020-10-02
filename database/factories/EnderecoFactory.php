@@ -24,9 +24,6 @@ class EnderecoFactory extends Factory
     public function definition()
     {
         return [
-            'candidato_id' => function() {
-                return Candidato::factory()->create()->id;
-            },
             'bairro' => $this->faker->state, // nao é nome de bairro, mas é só para testes
             'numero' => $this->faker->unique()->buildingNumber,
             'cep' => $this->faker->postcode,

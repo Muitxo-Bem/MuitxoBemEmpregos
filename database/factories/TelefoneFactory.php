@@ -25,12 +25,6 @@ class TelefoneFactory extends Factory
     public function definition()
     {
         return [
-            'candidato_id' => function() {
-                return Candidato::factory()->create()->id;
-            },
-            'empregador_id' => function() {
-                return Empregador::factory()->create()->id;
-            },
             'telefone_primario' => $this->faker->cellphonenumber,
             'telefone_secundario' => $this->faker->cellphonenumber,
         ];
