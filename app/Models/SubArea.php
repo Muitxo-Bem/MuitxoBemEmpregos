@@ -9,7 +9,7 @@ class SubArea extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['Nome'];
+    protected $fillable = ['area_formacao_id','nome'];
 
     public function dono(){
         return $this->belongsTo('App\Models\AreaFormacao','area_formacao_id');

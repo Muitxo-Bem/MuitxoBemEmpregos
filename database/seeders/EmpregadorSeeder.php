@@ -16,7 +16,7 @@ class EmpregadorSeeder extends Seeder
     public function run()
     {
         Empregador::factory()
-                    ->times(50)
+                    ->times(1)
                     ->has(Telefone::factory()->count(1))
                     ->create();
     }

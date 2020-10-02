@@ -24,9 +24,6 @@ class PortfolioFactory extends Factory
     public function definition()
     {
         return [
-            'candidato_id' => function(){
-                return Candidato::factory()->create()->id;
-            },
             'link' => $this->faker->url,
         ];
     }

@@ -24,9 +24,6 @@ class IdiomaFactory extends Factory
     public function definition()
     {
         return [
-            'curriculo_id' => function() {
-                return Curriculo::factory()->create()->id;
-            },
             'idioma' => $this->faker->word,
         ];
     }

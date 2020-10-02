@@ -24,10 +24,7 @@ class SubAreaFactory extends Factory
     public function definition()
     {
         return [
-            'area_formacao_id' => function() {
-                return AreaFormacao::factory()->create()->id;
-            },
-            'area' => $this->faker->sentence($nbWords = 8, $variableNbWords = true),
+            'nome' => $this->faker->sentence($nbWords = 8, $variableNbWords = true),
         ];
     }
 

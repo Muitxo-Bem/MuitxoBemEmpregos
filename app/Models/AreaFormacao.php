@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AreaFormacao extends Model
 {
     use HasFactory;
+    protected $table = 'area_formacaos';
     protected $fillable = ['curriculo_id','area'];
 
     public static $rules = [
@@ -25,6 +26,6 @@ class AreaFormacao extends Model
     }
 
     public function dono(){
-        return $this->belongsTo('App\Models\Curriculo', 'curriculo_id', 'area_formacao_id');
+        return $this->belongsTo('App\Models\Curriculo', 'curriculo_id');
     }
 }
