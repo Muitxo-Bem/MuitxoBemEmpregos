@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Curriculo extends Model
 {
     use HasFactory;
+    protected $fillable = ['candidato_id', 'info_adicional', 'experiencia'];
+
+    public static $rules = ['candidato_id'=>'required'];
+    public static $messages = ['candidato_id.*'=>'Id de candidato Vazio'];
 
     public function idiomas(){
         return $this->hasMany('App\Models\Idioma');
@@ -18,6 +22,6 @@ class Curriculo extends Model
     }
 
     public function dono(){
-        return $this->belongsTo('App\Models\Candidato', 'candidato_id', 'curriculo_id');
+        return $this->belongsTo('App\Models\Candidato', 'candidato_id');
     }
 }
