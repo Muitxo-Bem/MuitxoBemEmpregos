@@ -27,6 +27,11 @@
                 <label for='Senha'>Senha</label>
                 <input type='password' name='senha' id='senha'>
             </div>
+
+            <div>
+                <label for='ConfirmaçãoSenha'>Confirme sua senha</label>
+                <input type='password' name='senha_confirmation' id='senha_confirmation'>
+            </div>
             
             <button type='submit'>Cadastrar</button>
         </form>
