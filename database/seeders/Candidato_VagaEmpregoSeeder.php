@@ -15,7 +15,7 @@ class Candidato_VagaEmpregoSeeder extends Seeder
     public function run()
     {
         Candidato_VagaEmprego::factory()
-            ->times(50)
+            ->times(25)
             ->create();
         //
     }

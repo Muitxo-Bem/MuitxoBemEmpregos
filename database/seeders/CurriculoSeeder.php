@@ -17,7 +17,7 @@ class CurriculoSeeder extends Seeder
     public function run()
     {
         Curriculo::factory()
-                    ->times(1)
+                    ->times(25)
                     ->has(Idioma::factory())
                     ->has(AreaFormacao::factory())
                     ->create();

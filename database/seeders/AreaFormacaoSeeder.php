@@ -16,7 +16,7 @@ class AreaFormacaoSeeder extends Seeder
     public function run()
     {
         AreaFormacao::factory()
-                    ->times(50)
+                    ->times(25)
                     ->has(SubArea::factory()->count(1))
                     ->create();
     }

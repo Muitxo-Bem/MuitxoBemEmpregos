@@ -21,8 +21,8 @@ class Candidato extends Model
                             ];
 
     public static $messages = [
-                              'nome.*' => 'O campo Nome é obrigatório e deve ter entre 5 e 100 caracteres',
-                              'cpf.*' => 'O campo CPF é obrigatório e deve conter 11 digitos',
+                              'nome.*' => 'O campo Nome é obrigatório e deve ter entre 3 e 100 caracteres',
+                              'cpf.*' => 'O campo CPF é obrigatório e deve conter 14 digitos, incluindo os pontos e o hífen',
                               'email.*' => 'O campo Email é obrigatório e deve ser válido',
                               'senha.confirmed' => 'A confirmação da senha deve ser igual à senha digitada',
                               'senha.*' => 'O campo Senha é obrigatório e deve conter no mínimo 8 caracteres',
