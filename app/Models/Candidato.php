@@ -11,13 +11,13 @@ class Candidato extends Model
 
     protected $fillable = ['nome','cpf','email','senha'];
 
-    protected $hidden = ['senha'];
+    //protected $hidden = ['senha'];
 
     public static $rules =  [
-                            'nome' => 'required|min:5|max:100',
-                            'cpf' => 'required|digits:11',
+                            'nome' => 'required|min:3|max:100',
+                            'cpf' => 'required|min:14|max:14',
                             'email' => 'required|email',
-                            'senha' => 'required|min:8|confirmed', //Confirmação de password? Usar confirmed
+                            'senha' => 'required|min:8|max:64|confirmed',
                             ];
 
     public static $messages = [
