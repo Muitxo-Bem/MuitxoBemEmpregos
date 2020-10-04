@@ -7,6 +7,7 @@ use App\Models\Endereco;
 use App\Models\Telefone;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class CandidatoController extends Controller
 {
@@ -62,7 +63,7 @@ class CandidatoController extends Controller
             $candidato->nome = $request->input('nome');
             $candidato->cpf = $request->input('cpf');
             $candidato->email = $request->input('email');
-            $candidato->senha = $request->input('senha');
+            $candidato->senha = Hash::make($request->input('senha'));
             $candidato->save();
             $candidato_id = $candidato->id;
 
