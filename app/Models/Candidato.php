@@ -17,7 +17,7 @@ class Candidato extends Model
                             'nome' => 'required|min:3|max:100',
                             'cpf' => 'required|min:14|max:14',
                             'email' => 'required|email',
-                            'senha' => 'required|min:8|confirmed',
+                            'senha' => 'required|min:8|max:64|confirmed',
                             ];
 
     public static $messages = [
