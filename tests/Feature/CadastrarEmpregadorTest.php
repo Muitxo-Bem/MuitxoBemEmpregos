@@ -46,6 +46,5 @@ class CadastrarEmpregadorTest extends TestCase
         ]                       )->toArray();
         $dados = array_merge($empNew,$telNew);
         $response = $this->followingRedirects()->post('/empregadores',$dados)->assertSee('O campo Nome é obrigatório e deve ter entre 3 e 100 caracteres');
-
     }
 }
