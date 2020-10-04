@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Candidato;
+use App\Models\Endereco;
+use App\Models\Telefone;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class CandidatoController extends Controller
 {
@@ -38,10 +41,50 @@ class CandidatoController extends Controller
     {
         try{
             \App\Validator\CandidatoValidator::validate($request->all());
-            $dados = $request->all();
-            $dados['senha'] = Hash::make($dados['senha']);
-            \App\Models\Candidato::create($dados);
-            return 'Candidato cadastrado';
+            \App\Validator\TelefoneValidator::validate($request->all());
+            \App\Validator\EnderecoValidator::validate($request->all());
+
+            // $candidato = new Candidato();
+            // $candidato->nome = $request->input('nome');
+            // $candidato->cpf = $request->input('cpf');
+            // $candidato->email = $request->input('email');
+            // $candidato->senha = $request->input('senha');
+            // $candidato->telefones->telefone_primario = $request->input('telefone_primario');
+            // $candidato->telefones->telefone_secundario = $request->input('telefone_secundario');
+            // $candidato->endereco->rua = $request->input('rua');
+            // $candidato->endereco->bairro = $request->input('bairro');
+            // $candidato->endereco->numero = $request->input('numero');
+            // $candidato->endereco->cep = $request->input('cep');
+            // $candidato->endereco->estado = $request->input('estado');
+            // $candidato->endereco->cidade = $request->input('cidade');
+            // $candidato->push();
+
+            $candidato = new Candidato();
+            $candidato->nome = $request->input('nome');
+            $candidato->cpf = $request->input('cpf');
+            $candidato->email = $request->input('email');
+            $candidato->senha = Hash::make($request->input('senha'));
+            $candidato->save();
+            $candidato_id = $candidato->id;
+
+            $telefone = new Telefone();
+            $telefone->telefone_primario = $request->input('telefone_primario');
+            $telefone->telefone_secundario = $request->input('telefone_secundario');
+            $telefone->candidato_id = $candidato_id;
+            $telefone->save();
+
+            $endereco = new Endereco();
+            $endereco->rua = $request->input('rua');
+            $endereco->bairro = $request->input('bairro');
+            $endereco->numero = $request->input('numero');
+            $endereco->cep = $request->input('cep');
+            $endereco->estado = $request->input('estado');
+            $endereco->cidade = $request->input('cidade');
+            $endereco->candidato_id = $candidato_id;
+            $endereco->save();
+
+            return "Candidato Cadastrado";
+
         }catch(\App\Validator\ValidationException $exception){
             return redirect(route('candidatos.create'))
             ->withErrors($exception->getValidator())
