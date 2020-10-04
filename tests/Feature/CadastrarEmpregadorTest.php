@@ -15,7 +15,8 @@ class CadastrarEmpregadorTest extends TestCase
         return ['nome'=>"ErikJhonattaTest",
                 'cpf'=>'987.654.321-00',
                 'email' => 'secure@example.org',
-                'senha' => "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"
+                'senha' => "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+                'senha_confirmation' =>"$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
         ];
     }
     public function testExample()
@@ -25,13 +26,26 @@ class CadastrarEmpregadorTest extends TestCase
         $response->assertStatus(200);
     }
     public function testCadastroEmpregador(){
-
+        $response = $this->get('/');
         $empNew = $this->inicializarEmpregador();
         $telNew = Telefone::factory()->make(['telefone_primario'=>'12345678910',
                                              'telefone_secundario'=>'12345678910',
         ]                       )->toArray();
         $dados = array_merge($empNew,$telNew);
-        $response = $this->post('/empregadores/create',$dados)->assertSee('Empregador cadastrado');
+        $response = $this->followingRedirects()->post('/empregadores',$dados)->assertSee('Empregador cadastrado');
+
+    }
+    public function testCadastroEmpregadorDadosIncompletos(){
+        $response = $this->get('/');
+        $empNew = $this->inicializarEmpregador();
+        $empNew['nome'] = '';
+        $empNew['cpf'] = '222.222.222-22';
+        $empNew['email'] = 'example@secure.org';
+        $telNew = Telefone::factory()->make(['telefone_primario'=>'12345678911',
+            'telefone_secundario'=>'12345578910',
+        ]                       )->toArray();
+        $dados = array_merge($empNew,$telNew);
+        $response = $this->followingRedirects()->post('/empregadores',$dados)->assertSee('O campo Nome é obrigatório e deve ter entre 3 e 100 caracteres');
 
     }
 }
