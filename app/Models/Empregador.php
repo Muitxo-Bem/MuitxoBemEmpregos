@@ -11,13 +11,12 @@ class Empregador extends Model
 
     protected $fillable = ['nome','cpf','email','senha'];
 
-    protected $hidden = ['senha'];
 
     public static $rules =  [
                             'nome' => 'required|min:5|max:100',
                             'cpf' => 'required|digits:11',
                             'email' => 'required|email',
-                            'senha' => 'required|min:8', //Confirmação de password? Usar confirmed
+                            'senha' => 'required|min:8|max:64', //Confirmação de password? Usar confirmed
                             ];
 
     public static $messages = [
