@@ -17,8 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('debug', function (){
-    \App\Models\Candidato::factory()->count(4)->create();
-    return \App\Models\Candidato::all();
+    $a = \App\Models\Empregador::factory()->make();
+//    return $a;
+    return \App\Validator\EmpregadorValidator::validate($a->toArray());
 });
 Route::resource('candidatos','App\Http\Controllers\CandidatoController');
 Route::resource('enderecos','App\Http\Controllers\EnderecoController');
