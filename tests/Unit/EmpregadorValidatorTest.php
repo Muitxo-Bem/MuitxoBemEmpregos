@@ -21,33 +21,43 @@ class EmpregadorValidatorTest extends TestCase
     {
         $this->assertTrue(true);
     }
-//    public function testEmpregadorSemNome(){
-//        $this->expectException(ValidationException::class);
-//        $emp = new Empregador();
-//        $emp->nome = '';
-//        $emp->cpf ='12345678910';
-//        $emp->email = 'erik@gmail.com';
-//        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-//        EmpregadorValidator::validate($emp->toArray());
-//    }
-//    public function testEmpregadorNomeMaiorQueCem(){
-//        $this->expectException(ValidationException::class);
-//        $emp = new Empregador();
-//        $emp->nome = 'ensP65JekrmDCq9CWCK2RnqCc8D5dqpCq9CWCK2RnqCc8D5dqpCq9CWCK2RnqCc8D5dqpCq9CWCK2RnqCc8D5dqpCq9CWCK2RnqCc8D5dqpClJDzYjl30EIhOB6HUE8R2syeVN20';
-//        $emp->cpf ='12345678910';
-//        $emp->email = 'erik@gmail.com';
-//        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-//        EmpregadorValidator::validate($emp->toArray());
-//    }
-//    public function testEmpregadorNomeMenorQueCinco(){
-//        $this->expectException(ValidationException::class);
-//        $emp = new Empregador();
-//        $emp->nome = 'ana';
-//        $emp->cpf ='12345678910';
-//        $emp->email = 'erik@gmail.com';
-//        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-//        EmpregadorValidator::validate($emp->toArray());
-//    }
+    public function testEmpregadorCorreto(){
+
+        $emp = new Empregador();
+        $emp->nome = 'ErikJhonatta';
+        $emp->cpf ='12345678910';
+        $emp->email = 'erik@gmail.com';
+        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        EmpregadorValidator::validate($emp->toArray());
+        $this->assertTrue(True);
+    }
+    public function testEmpregadorSemNome(){
+        $this->expectException(ValidationException::class);
+        $emp = new Empregador();
+        $emp->nome = '';
+        $emp->cpf ='12345678910';
+        $emp->email = 'erik@gmail.com';
+        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        EmpregadorValidator::validate($emp->toArray());
+    }
+    public function testEmpregadorNomeMaiorQueCem(){
+        $this->expectException(ValidationException::class);
+        $emp = new Empregador();
+        $emp->nome = 'ensP65JekrmDCq9CWCK2RnqCc8D5dqpCq9CWCK2RnqCc8D5dqpCq9CWCK2RnqCc8D5dqpCq9CWCK2RnqCc8D5dqpCq9CWCK2RnqCc8D5dqpClJDzYjl30EIhOB6HUE8R2syeVN20';
+        $emp->cpf ='12345678910';
+        $emp->email = 'erik@gmail.com';
+        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        EmpregadorValidator::validate($emp->toArray());
+    }
+    public function testEmpregadorNomeMenorQueCinco(){
+        $this->expectException(ValidationException::class);
+        $emp = new Empregador();
+        $emp->nome = 'ana';
+        $emp->cpf ='12345678910';
+        $emp->email = 'erik@gmail.com';
+        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        EmpregadorValidator::validate($emp->toArray());
+    }
     public function testCpfEmpregadorVazio(){
         $this->expectException(ValidationException::class);
         $emp = new Empregador();
