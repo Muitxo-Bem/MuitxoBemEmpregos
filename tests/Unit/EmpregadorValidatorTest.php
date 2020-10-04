@@ -28,6 +28,7 @@ class EmpregadorValidatorTest extends TestCase
         $emp->cpf ='123.456.789-10';
         $emp->email = 'erik@gmail.com';
         $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
         EmpregadorValidator::validate($emp->toArray());
         $this->assertTrue(True);
     }
@@ -38,6 +39,8 @@ class EmpregadorValidatorTest extends TestCase
         $emp->cpf ='123.456.789-10';
         $emp->email = 'erik@gmail.com';
         $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+
         EmpregadorValidator::validate($emp->toArray());
     }
     public function testEmpregadorNomeMaiorQueCem(){
@@ -47,6 +50,8 @@ class EmpregadorValidatorTest extends TestCase
         $emp->cpf ='123.456.789-10';
         $emp->email = 'erik@gmail.com';
         $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+
         EmpregadorValidator::validate($emp->toArray());
     }
     public function testEmpregadorNomeMenorQueCinco(){
@@ -56,6 +61,8 @@ class EmpregadorValidatorTest extends TestCase
         $emp->cpf ='123.456.789-10';
         $emp->email = 'erik@gmail.com';
         $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+
         EmpregadorValidator::validate($emp->toArray());
     }
     public function testCpfEmpregadorVazio(){
@@ -65,6 +72,8 @@ class EmpregadorValidatorTest extends TestCase
         $emp->cpf ='';
         $emp->email = 'erik@gmail.com';
         $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+
         EmpregadorValidator::validate($emp->toArray());
     }
     public function testCpfEmpregadorDiferenteDeOnze(){
@@ -74,6 +83,8 @@ class EmpregadorValidatorTest extends TestCase
         $emp->cpf ='123';
         $emp->email = 'erik@gmail.com';
         $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+
         EmpregadorValidator::validate($emp->toArray());
     }
     public function testEmailEmpregadorVazio(){
@@ -83,6 +94,8 @@ class EmpregadorValidatorTest extends TestCase
         $emp->cpf ='123.456.789-10';
         $emp->email = '';
         $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+
         EmpregadorValidator::validate($emp->toArray());
     }
     public function testEmailEmpregadorInvalido(){
@@ -92,6 +105,8 @@ class EmpregadorValidatorTest extends TestCase
         $emp->cpf ='123.456.789-10';
         $emp->email = 'Email';
         $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+
         EmpregadorValidator::validate($emp->toArray());
     }
     public function testSenhaEmpregadorVazia(){
@@ -101,6 +116,8 @@ class EmpregadorValidatorTest extends TestCase
         $emp->cpf ='123.456.789-10';
         $emp->email = 'erik@gmail.com';
         $emp->senha = "";
+        $emp->senha_confirmation = "";
+
         EmpregadorValidator::validate($emp->toArray());
     }
     public function testSenhaEmpregadorMenorQueOito(){
@@ -110,6 +127,7 @@ class EmpregadorValidatorTest extends TestCase
         $emp->cpf ='123.456.789-10';
         $emp->email = 'erik@gmail.com';
         $emp->senha = "$2y";
+        $emp->senha_confirmation = "$2y";
         EmpregadorValidator::validate($emp->toArray());
     }
 }
