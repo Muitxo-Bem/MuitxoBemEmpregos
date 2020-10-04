@@ -24,12 +24,12 @@ class EnderecoFactory extends Factory
     public function definition()
     {
         return [
+            'rua' => $this->faker->streetAddress,
             'bairro' => $this->faker->state, // nao é nome de bairro, mas é só para testes
             'numero' => $this->faker->unique()->buildingNumber,
             'cep' => $this->faker->postcode,
             'estado'=> $this->faker->stateAbbr,
             'cidade' => $this->faker->city,
-            'rua' => $this->faker->streetAddress,
         ];
     }
 }

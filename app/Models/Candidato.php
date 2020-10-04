@@ -27,13 +27,13 @@ class Candidato extends Model
                               'senha.confirmed' => 'A confirmação da senha deve ser igual à senha digitada',
                               'senha.*' => 'O campo Senha é obrigatório e deve conter no mínimo 8 caracteres',
                               ];
-
-    public function endereco(){
-        return $this->hasOne('App\Models\Endereco');
-    }
-
+    
     public function telefones(){
         return $this->hasMany('App\Models\Telefone');
+    }
+    
+        public function endereco(){
+        return $this->hasOne('App\Models\Endereco');
     }
 
     public function vagaEmpregos(){
