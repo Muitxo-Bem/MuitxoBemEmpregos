@@ -73,6 +73,12 @@ class CandidatoValidatorTest extends TestCase
         CandidatoValidator::validate($candidato->toArray());
     }
 
+    public function testSenhaCandidatoMaiorQue64(){
+        $this->expectException(ValidationException::class);
+        $candidato = Candidato::factory()->make(['senha' => 'uuuuuuuuuuuuuuuuuuuuuuuuunnnnnnnnnnnnnnnnnnnnnnnnnnnnniiiiiiiiiiiiiiiiiiiiiiiiiiiiiiuuuuuuuuuuuuuuuuuuuuuuuu']);
+        CandidatoValidator::validate($candidato->toArray());
+    }
+
     public function testCandidatoCorreto(){
         $candidato = Candidato::factory()->make();
         $candidato->senha_confirmation = $candidato->senha;
