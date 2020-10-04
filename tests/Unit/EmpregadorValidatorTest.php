@@ -54,10 +54,10 @@ class EmpregadorValidatorTest extends TestCase
 
         EmpregadorValidator::validate($emp->toArray());
     }
-    public function testEmpregadorNomeMenorQueCinco(){
+    public function testEmpregadorNomeMenorQueTres(){
         $this->expectException(ValidationException::class);
         $emp = new Empregador();
-        $emp->nome = 'ana';
+        $emp->nome = 'an';
         $emp->cpf ='123.456.789-10';
         $emp->email = 'erik@gmail.com';
         $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";

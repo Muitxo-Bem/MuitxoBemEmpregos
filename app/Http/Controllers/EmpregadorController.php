@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Telefone;
+use App\Validator\TelefoneValidator;
 use Hash;
 
 use App\Models\Empregador;
@@ -41,7 +43,13 @@ class EmpregadorController extends Controller
             \App\Validator\EmpregadorValidator::validate($request->all());
             $dados = $request->all();
             $dados['senha'] = Hash::make($dados['senha']);
-            \App\Models\Empregador::create($dados);
+            $emp = Empregador::create($dados);
+            $request['empregador_id'] = $emp->id;
+            $request['candidato_id'] = null;
+            $dados = $request->all();
+            TelefoneValidator::validate($request->all());
+            Telefone::create($dados);
+
             return 'Empregador cadastrado';
         }catch(\App\Validator\ValidationException $exception){
             return redirect(route('empregadores.create'))
