@@ -27,7 +27,21 @@
                 <label for='Senha'>Senha</label>
                 <input type='password' name='senha' id='senha'>
             </div>
-            
+            <div>
+                <label for='Senha'>Confirme a Senha</label>
+                <input type='password' name='senha_confirmation' id='senha_confirmation'>
+            </div>
+            <br>
+            <h2>Telefone:</h2>
+            <div>
+                <label for='telefone_primario'>TPrimario</label>
+                <input type='text' name='telefone_primario' id='telefone_primario'>
+            </div>
+            <div>
+                <label for='telefone_secundario'>TSecundario</label>
+                <input type='text' name='telefone_secundario' id='telefone_secundario'>
+            </div>
+            <br>
             <button type='submit'>Cadastrar</button>
         </form>
     </div>
@@ -37,7 +51,7 @@
         <div>{{$item}}</div>
     @endforeach
     @endif
-    
+
 </body>
 
 </html>
