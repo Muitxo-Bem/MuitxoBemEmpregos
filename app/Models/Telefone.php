@@ -9,7 +9,7 @@ class Telefone extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['telefone_primario','telefone_secundario'];
+    protected $fillable = ['empregador_id','candidato_id','telefone_primario','telefone_secundario'];
 
     public static $rules = ['telefone_primario' => 'required|digits:11',
                             'telefone_secundario' => 'digits:11',

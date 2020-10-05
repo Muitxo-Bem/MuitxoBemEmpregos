@@ -29,3 +29,7 @@ Route::resource('vagas','App\Http\Controllers\VagaEmpregoController');
 Route::resource('portfolios','App\Http\Controllers\PortfolioController');
 Route::resource('curriculos','App\Http\Controllers\CurriculoController');
 Route::resource('area_formacaos','App\Http\Controllers\AreaFormacaoController');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
