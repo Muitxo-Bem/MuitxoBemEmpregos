@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'empregador' =>[
+            'redirectTo' => 'empregadores.home',
+            'driver' => 'session',
+            'provider' => 'empregador',
+        ]
     ],
 
     /*
@@ -70,6 +75,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'empregador'=>[
+            'driver' => 'eloquent',
+            'model' => App\Models\Empregador::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

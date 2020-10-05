@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use PhpParser\Node\Stmt\Return_;
 
-class Empregador extends Model
+class Empregador extends Authenticatable
 {
     use HasFactory;
 
     protected $fillable = ['nome','cpf','email','senha'];
-//    protected $hidden = ['senha'];
 
     public static $rules =  [
                             'nome' => 'required|min:3|max:100',
@@ -30,5 +31,9 @@ class Empregador extends Model
 
     public function telefones(){
         return $this->hasMany('App\Models\Telefone');
+    }
+    public function getAuthPassword()
+    {
+        return $this->senha;
     }
 }
