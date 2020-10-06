@@ -33,3 +33,7 @@ Route::resource('area_formacaos','App\Http\Controllers\AreaFormacaoController');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/teste', function () {
+    return view('Candidato.show');
+});
