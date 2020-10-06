@@ -32,4 +32,5 @@ Route::resource('area_formacaos','App\Http\Controllers\AreaFormacaoController');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\VagaEmpregoController::class, 'index'])->name('home');
