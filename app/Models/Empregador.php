@@ -32,6 +32,9 @@ class Empregador extends Authenticatable
     public function telefones(){
         return $this->hasMany('App\Models\Telefone');
     }
+    public function vagas(){
+        return $this->hasMany('App\Models\VagaEmprego');
+    }
     public function getAuthPassword()
     {
         return $this->senha;

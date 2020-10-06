@@ -33,6 +33,7 @@ class VagaEmprego extends Model
     }
 
     public function empregador(){
-        return $this->belongsTo('App\Models\Empregador','empregador_id','vaga_id','candidato_id');
+        return $this->belongsTo('App\Models\Empregador','empregador_id');
+        // return $this->belongsTo('App\Models\Empregador','empregador_id','vaga_id','candidato_id');
     }
 }
