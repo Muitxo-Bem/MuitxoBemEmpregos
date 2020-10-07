@@ -6,7 +6,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Curriculo;
+<<<<<<< HEAD
 use App\Models\Candidato;
+=======
+>>>>>>> Adicionando Testes de Feature de Curriculo
 
 class CadastrarCurriculoTest extends TestCase
 {
@@ -28,6 +31,7 @@ class CadastrarCurriculoTest extends TestCase
         return $dados;
     }
 
+<<<<<<< HEAD
     public function inicializarArrayCandidato(){
         $candidato = Candidato::factory()->make();
         $dados = $candidato->toArray();
@@ -40,6 +44,12 @@ class CadastrarCurriculoTest extends TestCase
         $candidato = $this->inicializarArrayCandidato();
         $dados = array_merge($curriculo, $candidato);
 
+=======
+    public function testCadastroCurriculo(){
+        $curriculo = $this->inicializarArrayCurriculo();
+
+        $dados = ($curriculo);
+>>>>>>> Adicionando Testes de Feature de Curriculo
         $response = $this
             ->followingRedirects()
             ->post('curriculos', $dados)
