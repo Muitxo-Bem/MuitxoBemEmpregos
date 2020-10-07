@@ -19,17 +19,17 @@ class Endereco extends Model
                                'cidade' => array('required','regex:/^[\pL\s]+$/u'),
                             ];
 
-    public static $messages = [   'rua.required' => "Rua vazia",
+    public static $messages = [   'rua.required' => "O campo rua é obrigatório",
                                   'rua.regex' => 'Rua Inválida',
-                                  'bairro.required'=>'Bairro Vazio',
-                                  'bairro.alpha'=>'Nome de Bairro Invalido',
-                                  'numero.required' => 'Numero Vazio',
-                                  'numero.regex' => 'Numero Inválido',
-                                  'cep.required' => 'Cep Vazio',
+                                  'bairro.required'=>'O campo bairro é obrigatório',
+                                  'bairro.alpha'=>'Nome do bairro é inválido',
+                                  'numero.required' => 'O campo número é obrigatório',
+                                  'numero.regex' => 'Número Inválido',
+                                  'cep.required' => 'O campo CEP é obrigatório',
                                   'cep.regex' => "Cep Inválido",
-                                  'estado.required' => 'Estado Vazio (UF)',
+                                  'estado.required' => 'O campo estado é obrigatório, selecione um estado',
                                   'estado.regex' => "Estado Invalido (UF)",
-                                  'cidade.required' => 'Cidade Vazia',
+                                  'cidade.required' => 'O campo cidade é obrigatório ',
                                   'cidade.alpha' => "Cidade Invalida",
                                  ];
 
