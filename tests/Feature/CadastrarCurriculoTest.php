@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Curriculo;
+use App\Models\Candidato;
 
 class CadastrarCurriculoTest extends TestCase
 {
@@ -27,10 +28,18 @@ class CadastrarCurriculoTest extends TestCase
         return $dados;
     }
 
+    public function inicializarArrayCandidato(){
+        $candidato = Candidato::factory()->make();
+        $dados = $candidato->toArray();
+        $dados['senha_confirmation'] = $dados['senha'];
+        return $dados;
+    }
+
     public function testCadastroCurriculo(){
         $curriculo = $this->inicializarArrayCurriculo();
+        $candidato = $this->inicializarArrayCandidato();
+        $dados = array_merge($curriculo, $candidato);
 
-        $dados = ($curriculo);
         $response = $this
             ->followingRedirects()
             ->post('curriculos', $dados)

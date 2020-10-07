@@ -13,7 +13,8 @@
             @csrf
             <div>
                 <label for='candidato_id'>Candidato ID</label>
-                <input type='text' name='candidato_id' id='candidato_id'>
+                <textarea type='text' name='candidato_id' id='candidato_id'>
+                </textarea>
             </div>
             <div>
                 <label for='info_adicional'>Informação Adicional</label>
