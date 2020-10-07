@@ -83,7 +83,7 @@ class CandidatoController extends Controller
             $endereco->candidato_id = $candidato_id;
             $endereco->save();
 
-            return "Candidato Cadastrado";
+            return view('Candidato.show')->with('candidato', $candidato);
 
         }catch(\App\Validator\ValidationException $exception){
             return redirect(route('candidatos.create'))
@@ -100,7 +100,7 @@ class CandidatoController extends Controller
      */
     public function show(Candidato $candidato)
     {
-        //return view('Candidato.show')->with('candidato', $candidato);
+        return view('Candidato.show');
     }
 
     /**
