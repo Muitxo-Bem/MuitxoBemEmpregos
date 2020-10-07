@@ -1,6 +1,6 @@
 @extends('layouts/app')
 @section('head')
-    <link href="{{ asset('css/list_vagas.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/index_vagas.css') }}" rel="stylesheet">
 @endsection
 @section('content')
 <div class="form-group has-search" id="search-bar">
@@ -24,7 +24,7 @@
             @if ($vaga->ativa != 0)
                 <tr class='vaga'>
                     <td><img id = 'img-vaga' src="https://www.sportsjournalists.co.uk/wp-content/uploads/2016/04/Google-logo-for-featured-pic.jpg" alt="img"></td>
-                    <td class='nomeVaga'>{{$vaga->nome}}</td>
+                    <td class='nomeVaga'><a href="{{route('vagas.show',['vaga' => $vaga->id])}}">{{$vaga->nome}}</a></td>
                     <td class='nomeEmpregador'>{{$vaga->empregador->nome}}</td>
                     <td class='localVaga'>{{$vaga->local_de_trabalho}}</td>
                 </tr>

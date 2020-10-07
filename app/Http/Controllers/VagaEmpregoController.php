@@ -48,12 +48,12 @@ class VagaEmpregoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\VagaEmprego  $vagaEmprego
+     * @param  \App\Models\VagaEmprego  $vaga
      * @return \Illuminate\Http\Response
      */
-    public function show(VagaEmprego $vagaEmprego)
+    public function show(VagaEmprego $vaga)
     {
-        //
+        return view('VagaEmprego.show')->with('vaga',$vaga);
     }
 
     /**
