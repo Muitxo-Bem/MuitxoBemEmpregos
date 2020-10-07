@@ -37,6 +37,10 @@ class VagaEmpregoController extends Controller
     {
         try{
             \App\Validator\VagaEmpregoValidator::validate($request->all());
+            //dd($request->all());
+            if($request['quantidade_de_vagas'] <= 0){
+                $request['ativa'] = 0;
+            }
             $dados = $request->all();
             \App\Models\VagaEmprego::create($dados);
             return 'Vaga Criada';

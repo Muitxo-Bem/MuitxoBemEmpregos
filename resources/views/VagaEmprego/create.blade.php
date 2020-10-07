@@ -1,57 +1,108 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+@extends('layouts/app')
+@section('head')
+    <link href="{{ asset('css/create_vagas.css') }}" rel="stylesheet">
+@endsection
+@section('content')
+<div class="jumbotron " id='jumbotron'>
+    <h2 class="display-5">Cadastro de Vagas</h2>
+<div>
+    <form action="{{route('vagas.store')}}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label for='empregador_id' class="col-md-1 col-form-label">empregador_id</label>
+            <div class="col-md-6">
+                <input type='text' class="form-control @error('empregador_id') is-invalid @enderror" placeholder = "Digite o id do empregador" name='empregador_id' id='empregador_id' value="{{old('empregador_id')}}"/>    
+                @error('empregador_id')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='nome' class="col-md-2 col-form-label">Nome da Vaga</label>
+            <div class="col-md-6">
+                <input type='text' class="form-control @error('nome') is-invalid @enderror" placeholder = "Digite o Nome da Vaga" name='nome' id='nome' value="{{old('nome')}}"/>    
+                @error('nome')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='descricao' class="col-md-1 col-form-label">Descrição</label>
+            <div class="col-md-6">
+                <input type='text' class="form-control @error('descricao') is-invalid @enderror" placeholder = "Digite a descrição da vaga" name='descricao' id='descricao' value="{{old('descricao')}}"/>    
+                @error('descricao')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='quantidade_de_vagas' class="col-md-2 col-form-label">Quantidade de Vagas</label>
+            <div class="col-md-6">
+                <input type='text' class="form-control @error('quantidade_de_vagas') is-invalid @enderror" placeholder = "Digite a Quantidade de Vagas" name='quantidade_de_vagas' id='quantidade_de_vagas' value="{{old('quantidade_de_vagas')}}"/>    
+                @error('quantidade_de_vagas')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='local_de_trabalho' class="col-md-2 col-form-label">Local de Trabalho</label>
+            <div class="col-md-6">
+                <input type='text' class="form-control @error('local_de_trabalho') is-invalid @enderror" placeholder = "Digite o Local de Trabalho" name='local_de_trabalho' id='local_de_trabalho' value="{{old('local_de_trabalho')}}"/>    
+                @error('local_de_trabalho')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='requisitos' class="col-md-1 col-form-label">Requisitos</label>
+            <div class="col-md-6">
+                <input type='text' class="form-control @error('requisitos') is-invalid @enderror" placeholder = "Digite os Requisitos" name='requisitos' id='requisitos' value="{{old('requisitos')}}"/>    
+                @error('requisitos')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='faixa_salarial' class="col-md-2 col-form-label">Faixa Salarial</label>
+            <div class="col-md-6">
+                <input type='text' class="form-control @error('faixa_salarial') is-invalid @enderror" placeholder = "Digite a Faixa Salarial" name='faixa_salarial' id='faixa_salarial' value="{{old('faixa_salarial')}}"/>    
+                @error('faixa_salarial')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='diferenciais' class="col-md-1 col-form-label">Diferenciais</label>
+            <div class="col-md-6">
+                <input type='text' class="form-control @error('diferenciais') is-invalid @enderror" placeholder = "Digite os Diferenciais" name='diferenciais' id='diferenciais' value="{{old('diferenciais')}}"/>    
+                @error('diferenciais')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-lg btn-outline-info btn-block">
+            Cadastrar
+        </button>
+    </form>
+</div>
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidato Create</title>
-</head>
+@endsection
 
-<body>
-    <div>
-        <form action="{{route('vagas.store')}}" method="POST">
-            @csrf
-            <div>
-                <label for='empregador_id'>empregador</label>
-            <input type='text' name='empregador_id' id='empregador_id' value="{{old('empregador_id')}}">
-            </div>
-            <div>
-                <label for='nome'>nome</label>
-                <input type='text' name='nome' id='nome' value="{{old('nome')}}">
-            </div>
-            <div>
-                <label for='descricao'>descricao</label>
-                <input type='text' name='descricao' id='descricao' value="{{old('descricao')}}">
-            </div>
-            <div>
-                <label for='quantidade_de_vagas'>Quantidade de Vagas</label>
-                <input type='text' name='quantidade_de_vagas' id='quantidade_de_vagas' value="{{old('quantidade_de_vagas')}}">
-            </div>
-            <div>
-                <label for='local_de_trabalho'>Local de Trabalho</label>
-                <input type='text' name='local_de_trabalho' id='local_de_trabalho' value="{{old('local_de_trabalho')}}">
-            </div>
-            <div>
-                <label for='requisitos'>Requisitos</label>
-                <input type='text' name='requisitos' id='requisitos' value="{{old('requisitos')}}">
-            </div>
-            <div>
-                <label for='faixa_salarial'>Faixa Salarial</label>
-                <input type='text' name='faixa_salarial' id='faixa_salarial' value="{{old('faixa_salarial')}}">
-            </div>
-            <div>
-                <label for='diferenciais'>Diferenciais</label>
-                <input type='text' name='diferenciais' id='diferenciais' value="{{old('diferenciais')}}">
-            </div>
-            
-            <button type='submit'>Cadastrar</button>
-        </form>
-    </div>
-    @if($errors->any())
-    @foreach ($errors->all() as $item)
-        <div>{{$item}}</div>
-    @endforeach
-    @endif
-</body>
-
-</html>
