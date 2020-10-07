@@ -11,7 +11,11 @@ class Curriculo extends Model
     protected $fillable = ['candidato_id', 'info_adicional', 'experiencia'];
 
     public static $rules = ['candidato_id'=>'required'];
-    public static $messages = ['candidato_id.*'=>'Id de candidato Vazio'];
+    public static $messages = [
+                            'candidato_id.*'=>'Id de candidato Vazio',
+                            'info_adicional.*'=>'Campo Informações Adicionais não pode estar vazio',
+                            'experiencia.*'=>'Campo Experiência não pode estar vazio',
+                            ];
 
     public function idiomas(){
         return $this->hasMany('App\Models\Idioma');
