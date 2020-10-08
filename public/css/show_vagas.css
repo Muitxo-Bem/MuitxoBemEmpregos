@@ -1,0 +1,18 @@
+#jumbotron {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 2.375rem;
+    margin-right: 2.375rem;
+}
+
+#nome {
+    font-weight: bold;
+    margin-left: 2.375rem;
+}
+p{
+    padding-left: 10px;
+}
+
+img{
+    float: right;
+}

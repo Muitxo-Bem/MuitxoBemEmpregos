@@ -1,0 +1,43 @@
+#search-bar {
+    width: 50%;
+    margin: 50px auto;
+    padding-left: 2.375rem;
+        
+}
+#search-bar > input {
+    padding-left: 30px;
+}
+#search-icon {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+#jumbotron {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 2.375rem;
+    margin-right: 2.375rem;
+}
+#vaga{
+    width: 100%;
+}
+#img-vaga{
+    height: 55px;
+    width: 55px;
+    background-color: black;
+    border-radius: 30%;
+    text-align: center;
+    
+}
+#info-vaga{
+    float: unset;
+}
+#more-info{
+    float: right;
+}

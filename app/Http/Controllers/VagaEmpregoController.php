@@ -37,6 +37,10 @@ class VagaEmpregoController extends Controller
     {
         try{
             \App\Validator\VagaEmpregoValidator::validate($request->all());
+            //dd($request->all());
+            if($request['quantidade_de_vagas'] <= 0){
+                $request['ativa'] = 0;
+            }
             $dados = $request->all();
             \App\Models\VagaEmprego::create($dados);
             return 'Vaga Criada';
@@ -48,12 +52,12 @@ class VagaEmpregoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\VagaEmprego  $vagaEmprego
+     * @param  \App\Models\VagaEmprego  $vaga
      * @return \Illuminate\Http\Response
      */
-    public function show(VagaEmprego $vagaEmprego)
+    public function show(VagaEmprego $vaga)
     {
-        //
+        return view('VagaEmprego.show')->with('vaga',$vaga);
     }
 
     /**

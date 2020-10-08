@@ -12,6 +12,9 @@ class VagaEmpregoValidator{
         if(is_null($emp)){
             $validator->errors()->add('empregador_invalido','Empregador Inválido');
         }
+        if($data['quantidade_de_vagas'] < 0){
+            $validator->errors()->add('quantidade_invalida','Quantidade de vagas negativa');
+        }
         if(!$validator->errors()->isEmpty())
             throw new ValidationException($validator, "Erro na validação da Vaga de Emprego");
         return $validator;

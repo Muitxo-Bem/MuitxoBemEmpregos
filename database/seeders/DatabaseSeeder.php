@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CandidatoSeeder::class,
             EmpregadorSeeder::class,
-            //criar vagas
         ]);
     }
 }

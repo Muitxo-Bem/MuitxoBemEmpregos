@@ -25,7 +25,7 @@ class VagaEmprego extends Model
                                'local_de_trabalho.*' => 'Local de Trabalho é necessário',
                                'nome.*' => "Nome da Vaga é necessário",
                                'quantidade_de_vagas.required'=>"A quantidade de vagas é necessária",
-                               'quantidade_de_vagas.integer'=>"A quantidade de vagas deve ser um número inteiro",];
+                               'quantidade_de_vagas.integer'=>"A quantidade de vagas deve ser um número inteiro não negativo",];
 
 
     public function aplicacoes(){
@@ -33,6 +33,7 @@ class VagaEmprego extends Model
     }
 
     public function empregador(){
-        return $this->belongsTo('App\Models\Empregador','empregador_id','vaga_id','candidato_id');
+        return $this->belongsTo('App\Models\Empregador','empregador_id');
+        // return $this->belongsTo('App\Models\Empregador','empregador_id','vaga_id','candidato_id');
     }
 }
