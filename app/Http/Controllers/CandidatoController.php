@@ -111,7 +111,7 @@ class CandidatoController extends Controller
      */
     public function edit(Candidato $candidato)
     {
-        //
+        return "Funfou";
     }
 
     /**
