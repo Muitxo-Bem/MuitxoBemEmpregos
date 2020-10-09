@@ -16,11 +16,11 @@
     </div>
 
     <div class="col-md-4">
-        <button type="button" class="btn btn-success" onclick="">Editar Perfil</button>
+    <a class="btn btn-primary" href="{{route('candidatos.edit', $candidato)}}" role="button">Editar Perfil</a>
     </div>
 
     <div class="col-md-4">
-        <button type="button" class="btn btn-danger" onclick="">Apagar Perfil</button>
+        <a class="btn btn-danger" href="#" role="button">Apagar Perfil</a>
     </div>
 </body>
 </html>

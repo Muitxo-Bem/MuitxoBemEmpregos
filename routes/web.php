@@ -41,6 +41,3 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\VagaEmpregoController::class, 'index'])->name('home');
 
-Route::get('/teste', function () {
-    return view('Candidato.show');
-});
