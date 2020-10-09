@@ -33,6 +33,8 @@ class CadastrarCurriculoTest extends DuskTestCase
                     ->pause(1000)
                     ->press('Cadastrar')
                     ->pause(1000)
+                    ->type('idioma', 'Português, Inglês, Espanhol, Mandarim') //$curriculo->idioma
+                    ->type('areaFormacao', 'Universidade Federal do Agreste de Pernambuco, UFAPE. Ciência da Computação') //$curriculo->areaFormacao
                     ->screenshot('Cadastro Curriculo')
                     ->assertSee('Curriculo Criado');
         });
