@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curriculo;
+use App\Models\Idioma;
+use App\Models\AreaFormacao;
 use Illuminate\Http\Request;
 
 class CurriculoController extends Controller
@@ -35,14 +37,45 @@ class CurriculoController extends Controller
      */
     public function store(Request $request)
     {
+
         try{
+            \App\Validator\CurriculoValidator::validate($request->all());
+            \App\Validator\IdiomaValidator::validate($request->all());
+            \App\Validator\AreaFormacaoValidator::validate($request->all());
+
+            $curriculo = new Curriculo();
+            $curriculo->candidato_id = $request->input('candidato_id');
+            $curriculo->info_adicional = $request->input('info_adicional');
+            $curriculo->experiencia = $request->input('experiencia');
+            $curriculo->save();
+            $curriculo_id = $curriculo->id;
+
+            $idioma = new Idioma();
+            $idioma->idioma = $request->input('idioma');
+            $idioma->curriculo_id = $curriculo_id;
+            $idioma->save();
+
+            $areaFormacao = new AreaFormacao();
+            $areaFormacao->area = $request->input('area');
+            $areaFormacao->curriculo_id = $curriculo_id;
+            $areaFormacao->save();
+
+            return view('Curriculo.show')->with('curriculo', $curriculo);
+
+        }catch(\App\Validator\ValidationException $exception){
+            return redirect(route('curriculos.create'))
+            ->withErrors($exception->getValidator())
+            ->withInput();
+        }
+
+        /*try{
             \App\Validator\CurriculoValidator::validate($request->all());
             $dados = $request->all();
             \App\Models\Curriculo::create($dados);
             return 'Curriculo Criado';
         }catch(\App\Validator\ValidationException $e){
             return redirect(route('curriculos.create'))->withErrors($e->getValidator())->withInput();
-        }
+        }*/
     }
 
     /**
@@ -53,7 +86,7 @@ class CurriculoController extends Controller
      */
     public function show(Curriculo $curriculo)
     {
-        //
+        return view('Curriculo.show')->with('curiculo',$curriculo);
     }
 
     /**
