@@ -10,7 +10,10 @@ class Curriculo extends Model
     use HasFactory;
     protected $fillable = ['candidato_id', 'info_adicional', 'experiencia'];
 
-    public static $rules = ['candidato_id'=>'required'];
+    public static $rules = ['candidato_id'=>'required',
+                            'info_adicional'=>'required',
+                            'experiencia'=>'required',
+                            ];
     public static $messages = [
                             'candidato_id.*'=>'Id de candidato Vazio',
                             'info_adicional.*'=>'Campo Informações Adicionais não pode estar vazio',
