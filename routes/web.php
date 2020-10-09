@@ -1,7 +1,7 @@
     <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\VagaEmprego;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +30,12 @@ Route::resource('portfolios','App\Http\Controllers\PortfolioController');
 Route::resource('curriculos','App\Http\Controllers\CurriculoController');
 Route::resource('area_formacaos','App\Http\Controllers\AreaFormacaoController');
 
+
+Route::post('vagas/close/{vaga}','App\Http\Controllers\VagaEmpregoController@close')->name('vagas.close');
+
+Route::get('vagas/empregador/{vaga}',function(VagaEmprego $vaga){
+    return view('VagaEmprego.showEmpregador')->with('vaga',$vaga);
+})->name('vagas.empregador.show');
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
