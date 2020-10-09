@@ -28,16 +28,6 @@
                     </span>
                     @enderror
                 </div>
-            <div class="form-group">
-                <label for='info_adicional' class="col-md-3 col-form-label">Informações Adicionais</label>
-                <div class="col-md-6">
-                    <input type='text' class="form-control @error('info_adicional') is-invalid @enderror" placeholder = "Detalhe suas informações adicionais" name='info_adicional' id='info_adicional' value="{{old('info_adicional')}}"/>    
-                    @error('info_adicional')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{$message}}</strong>
-                    </span>
-                    @enderror
-                </div>
             </div>
             <div class="form-group">
                 <label for='experiencia' class="col-md-1 col-form-label">Experiência</label>
@@ -48,9 +38,7 @@
                         <strong>{{$message}}</strong>
                     </span>
                     @enderror
-                </div>
             </div>
-
             <div class="form-group">
                 <label for='idioma' class="col-md-3 col-form-label">Idiomas</label>
                 <div class="col-md-6">
@@ -61,12 +49,23 @@
                     </span>
                     @enderror
                 </div>
-            </div>
+                </div>
             <div class="form-group">
                 <label for='areaFormacao' class="col-md-3 col-form-label">Área de Formação</label>
                 <div class="col-md-6">
                     <input type='text' class="form-control @error('areaFormacao') is-invalid @enderror" placeholder = "Digite sua área de formação" name='area' id='area' value="{{old('area')}}"/>  
                     @error('area')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group">
+                <label for='info_adicional' class="col-md-3 col-form-label">Informações Adicionais</label>
+                <div class="col-md-6">
+                    <input type='text' class="form-control @error('info_adicional') is-invalid @enderror" placeholder = "Detalhe suas informações adicionais" name='info_adicional' id='info_adicional' value="{{old('info_adicional')}}"/>    
+                    @error('info_adicional')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
