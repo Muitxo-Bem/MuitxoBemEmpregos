@@ -155,7 +155,7 @@ class CandidatoController extends Controller
 
         }catch(\App\Validator\ValidationException $exception){
 
-            return redirect(route('candidatos.create'))
+            return redirect(route('candidatos.edit'))
             ->withErrors($exception->getValidator())
             ->withInput();
         }
