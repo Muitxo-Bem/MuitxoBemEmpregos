@@ -26,12 +26,8 @@ class Candidato_VagaEmpregoFactory extends Factory
     public function definition()
     {
         return [
-            'candidato_id' => function() {
-                return Candidato::factory()->create()->id;
-            },
-            'vaga_id' => function() {
-                return VagaEmprego::factory()->create()->id;
-            },
+            'candidato_id' => rand(1,25),
+            'vaga_id' => rand(1,15),
 
         ];
     }
