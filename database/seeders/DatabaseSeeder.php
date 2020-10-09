@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Candidato;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CandidatoSeeder::class,
             EmpregadorSeeder::class,
+            Candidato_VagaEmpregoSeeder::class,
         ]);
     }
 }

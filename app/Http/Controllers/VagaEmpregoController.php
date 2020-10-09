@@ -93,4 +93,8 @@ class VagaEmpregoController extends Controller
     {
         //
     }
+    public function close(VagaEmprego $vaga){
+        VagaEmprego::where('id',$vaga->id)->update(['ativa'=>0]);
+        return redirect()->back();
+    }
 }

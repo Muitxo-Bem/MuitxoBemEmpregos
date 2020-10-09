@@ -9,6 +9,7 @@ class VagaEmprego extends Model
 {
     use HasFactory;
 
+    protected $table = 'vaga_empregos';
     protected $fillable = ['ativa','faixa_salarial','requisitos','descricao','empregador_id',
                            'local_de_trabalho','nome','diferenciais','quantidade_de_vagas'];
     public static $rules = ['faixa_salarial' => 'regex:/^\d+(\.\d{1,2})?$/',
@@ -29,7 +30,7 @@ class VagaEmprego extends Model
 
 
     public function aplicacoes(){
-        return $this->belongsToMany('App\Models\Candidato','candidato_vaga_empregos');
+        return $this->belongsToMany('App\Models\Candidato','candidato_vaga_empregos','vaga_id','candidato_id');
     }
 
     public function empregador(){
