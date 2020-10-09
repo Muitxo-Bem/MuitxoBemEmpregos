@@ -12,12 +12,10 @@ class AreaFormacao extends Model
     protected $fillable = ['curriculo_id','area'];
 
     public static $rules = [
-                       'curriculo_id'=>'required',
                        'area'=>'required'
                        ];
     
     public static $messages = [
-                          'curriculo_id.*'=>'Id do curriculo inválido',
                           'area.*'=>'Area de formação inválida'
                           ];
 
