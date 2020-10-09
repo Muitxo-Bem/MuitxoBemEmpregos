@@ -100,7 +100,7 @@ class CandidatoController extends Controller
      */
     public function show(Candidato $candidato)
     {
-        return view('Candidato.show');
+        return view('Candidato.show')->with('candidato', $candidato);
     }
 
     /**
@@ -111,7 +111,7 @@ class CandidatoController extends Controller
      */
     public function edit(Candidato $candidato)
     {
-        return "Funfou";
+        return view('Candidato.editar')->with('candidato', $candidato);
     }
 
     /**
@@ -123,7 +123,43 @@ class CandidatoController extends Controller
      */
     public function update(Request $request, Candidato $candidato)
     {
-        //
+        try{
+            \App\Validator\CandidatoValidator::validate($request->all());
+            \App\Validator\TelefoneValidator::validate($request->all());
+            \App\Validator\EnderecoValidator::validate($request->all());
+
+            //$parametros = $request->all();
+            $candidatoAtualizar = Candidato::find($candidato->id);
+            //$candidatoAtualizar->update($parametros);
+            
+            $candidatoAtualizar->nome = $request->input('nome');
+            $candidatoAtualizar->email = $request->input('email');
+            $candidatoAtualizar->senha = Hash::make($request->input('senha'));
+            $candidatoAtualizar->update();
+
+            $telefoneAtualizar = Telefone::find($candidato->id);
+            $telefoneAtualizar->telefone_primario = $request->input('telefone_primario');
+            $telefoneAtualizar->telefone_secundario = $request->input('telefone_secundario');
+            $telefoneAtualizar->update();
+
+            $enderecoAtualizar = Endereco::find($candidato->id);
+            $enderecoAtualizar->rua = $request->input('rua');
+            $enderecoAtualizar->bairro = $request->input('bairro');
+            $enderecoAtualizar->numero = $request->input('numero');
+            $enderecoAtualizar->cep = $request->input('cep');
+            $enderecoAtualizar->estado = $request->input('estado');
+            $enderecoAtualizar->cidade = $request->input('cidade');
+            $enderecoAtualizar->update();
+
+            return "Candidato atualizado";
+
+        }catch(\App\Validator\ValidationException $exception){
+
+            return redirect(route('candidatos.create'))
+            ->withErrors($exception->getValidator())
+            ->withInput();
+        }
+        
     }
 
     /**
