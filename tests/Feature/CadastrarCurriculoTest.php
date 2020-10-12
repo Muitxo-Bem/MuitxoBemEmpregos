@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Models\AreaFormacao;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Curriculo;
 use App\Models\Candidato;
+use App\Models\Idioma;
 
 class CadastrarCurriculoTest extends TestCase
 {
@@ -24,7 +26,16 @@ class CadastrarCurriculoTest extends TestCase
 
     public function inicializarArrayCurriculo(){
         $curriculo = Curriculo::factory()->make();
-        $dados = $curriculo->toArray();
+        $curriculo = $curriculo->toArray();
+        
+        $idioma = Idioma::factory()->make();
+        $idioma = $idioma->toArray();
+
+        $areaFormacao = AreaFormacao::factory()->make();
+        $areaFormacao = $areaFormacao->toArray();
+
+        $dados= array_merge($curriculo,$idioma,$areaFormacao);
+
         return $dados;
     }
 
@@ -35,15 +46,13 @@ class CadastrarCurriculoTest extends TestCase
         return $dados;
     }
 
-    public function testCadastroCurriculo(){
+    public function testCadastroCurriculo(){ // Verificar esse teste
         $curriculo = $this->inicializarArrayCurriculo();
-        $candidato = $this->inicializarArrayCandidato();
-        $dados = array_merge($curriculo, $candidato);
-
+        $curriculo['candidato_id'] = Candidato::factory()->create()->id; //Salva um Candidato no Banco
         $response = $this
             ->followingRedirects()
-            ->post('curriculos', $dados)
-            ->assertSee('Curriculo Criado');
+            ->post('curriculos', $curriculo)
+            ->assertSee($curriculo['idioma']);
     }
 
     public function testCurriculoSemIdCandidato(){
