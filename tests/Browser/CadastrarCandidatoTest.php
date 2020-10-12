@@ -29,22 +29,17 @@ class CadastrarCandidatoTest extends DuskTestCase
                     ->type('email', 'uniu@gmail.com') //$candidato->email
                     ->type('senha', 'testando123') //$candidato->senha
                     ->type('senha_confirmation', 'testando123') //$candidato->senha
-                    ->pause(1000)
                     ->type('telefone_primario', '12312312312') //$telefone->telefone_primario
                     ->type('telefone_secundario', '12312312312') //$telefone->telefone_secundario
-                    ->pause(1000)
                     ->type('rua', 'Rua Pedro Alves da Silva') //$endereco->rua
                     ->type('bairro', 'Boa Vista') //$endereco->bairro
                     ->type('numero', '293') //$endereco->numero
                     ->type('cep', '44420-123') //$endereco->cep
-                    ->type('estado', 'PE') //$endereco->estado
+                    ->select('estado', 'PE') //$endereco->estado
                     ->type('cidade', 'Ibimirim') //$endereco->cidade
-                    ->pause(1000)
                     ->press('Cadastrar')
-                    ->pause(1000)
                     ->screenshot('Cadastro Candidato')
-                    ->pause(1000)
-                    ->assertSee('Candidato Cadastrado');
+                    ->assertSee('Bem vindo');
         });
     }
 }
