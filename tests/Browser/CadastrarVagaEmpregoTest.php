@@ -28,7 +28,6 @@ class CadastrarVagaEmpregoTest extends DuskTestCase
             ->type('diferenciais', 'qualquer coisa') //$endereco->rua
             ->press('Cadastrar')
             ->screenshot('Cadastro VagaEmprego')
-            ->pause(1000)
             ->assertSee('Vaga Criada');
 });
 }}

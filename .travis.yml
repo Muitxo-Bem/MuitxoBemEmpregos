@@ -1,0 +1,32 @@
+language: php
+
+php:
+  - 7.3
+
+services:
+  - mysql
+
+addons:
+  chrome: stable
+
+cache:
+  directories:
+    - node_modules
+    - vendor
+install:
+  - cp .env.travis .env
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - travis_retry npm install
+  - npm run dev
+  - mysql -e 'create database testing;'
+  - php artisan key:generate
+  - php artisan dusk:chrome-driver 86
+
+before_script:
+  - php artisan migrate 
+  - google-chrome --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - php artisan serve &
+
+script:
+  - php artisan test
+  - php artisan dusk

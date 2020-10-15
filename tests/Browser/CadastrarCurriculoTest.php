@@ -28,15 +28,12 @@ class CadastrarCurriculoTest extends DuskTestCase
             $browser->visit('/curriculos/create')
                     ->type('candidato_id', '001') //$curriculo->candidato_id
                     ->type('info_adicional', 'Familiar com métodos de desenvolvimento ágil') //$curriculo->info_adicional
-                    ->pause(1000)
                     ->type('experiencia', 'Três anos de experiência na NASA') //$curriculo->experiencia
-                    ->pause(1000)
-                    ->press('Cadastrar')
-                    ->pause(1000)
-                    ->type('idioma', 'Português, Inglês, Espanhol, Mandarim') //$curriculo->idioma
-                    ->type('areaFormacao', 'Universidade Federal do Agreste de Pernambuco, UFAPE. Ciência da Computação') //$curriculo->areaFormacao
+                    ->type('idioma', 'Português, Mandarim') //$curriculo->idioma
+                    ->type('area', 'Universidade Federal do Agreste de Pernambuco, UFAPE. Ciência da Computação') //$curriculo->areaFormacao
+                    ->press('Finalizar')
                     ->screenshot('Cadastro Curriculo')
-                    ->assertSee('Curriculo Criado');
+                    ->assertSee('Português');
         });
     }
 }
