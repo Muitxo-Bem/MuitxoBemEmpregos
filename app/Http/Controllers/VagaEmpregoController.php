@@ -41,7 +41,6 @@ class VagaEmpregoController extends Controller
             if($request['quantidade_de_vagas'] <= 0){
                 $request['ativa'] = 0;
             }
-
             $dados = $request->all();
             $vaga = new VagaEmprego();
             $vaga->ativa = 1;

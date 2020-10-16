@@ -81,7 +81,7 @@ class EmpregadorController extends Controller
      */
     public function show(Empregador $empregador)
     {
-        //
+        return 'Empregador Show';
     }
 
     /**
