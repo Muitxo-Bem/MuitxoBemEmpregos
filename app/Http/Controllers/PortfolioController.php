@@ -37,9 +37,14 @@ class PortfolioController extends Controller
     {
         try{
             \App\Validator\PortfolioValidator::validate($request->all());
-            $dados = $request->all();
-            \App\Models\Portfolio::create($dados);
-            return 'Portfolio Criado';
+
+            $portfolio = new Portfolio();
+            $portfolio->candidato_id = \Auth::user()->candidato()->get()->first()->id;
+            $portfolio->link = $request->input('link');
+            $portfolio->save();
+            return view('Portfolio.show')->with('portfolio', $portfolio);
+
+
         }catch (\App\Validator\ValidationException $e) {
             return redirect(route('portfolios.create'))->withErrors($e->getValidator())->withInput();
         }
@@ -53,7 +58,7 @@ class PortfolioController extends Controller
      */
     public function show(Portfolio $portfolio)
     {
-        //
+        return view('Portfolio.show')->with('portfolio',$portfolio);
     }
 
     /**

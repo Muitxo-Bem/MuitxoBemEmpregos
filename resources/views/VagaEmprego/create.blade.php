@@ -9,17 +9,6 @@
     <form action="{{route('vagas.store')}}" method="POST">
         @csrf
         <div class="form-group">
-            <label for='empregador_id' class="col-md-1 col-form-label">empregador_id</label>
-            <div class="col-md-6">
-                <input type='text' class="form-control @error('empregador_id') is-invalid @enderror" placeholder = "Digite o id do empregador" name='empregador_id' id='empregador_id' value="{{old('empregador_id')}}"/>    
-                @error('empregador_id')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{$message}}</strong>
-                </span>
-                @enderror
-            </div>
-        </div>
-        <div class="form-group">
             <label for='nome' class="col-md-2 col-form-label">Nome da Vaga</label>
             <div class="col-md-6">
                 <input type='text' class="form-control @error('nome') is-invalid @enderror" placeholder = "Digite o Nome da Vaga" name='nome' id='nome' value="{{old('nome')}}"/>    
