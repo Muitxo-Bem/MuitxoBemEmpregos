@@ -9,7 +9,7 @@ class Portfolio extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['candidato_id','link'];
+    protected $fillable = ['link'];
 
     public static $rules = ['link' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'];
     public static $messages = ['link.*' => "Url Inválida"];
