@@ -51,19 +51,21 @@ class CandidatoController extends Controller
             $user->password = Hash::make($request->input('senha'));
             $user->tipo = 'candidato';
             $user->save();
-            $user_id = $user->id;
+            #$user_id = $user->id;
             
             $candidato = new Candidato();
-            $candidato->user_id = $user_id;
+            //$candidato->user_id = $user_id;
             $candidato->nome = $request->input('nome');
             $candidato->cpf = $request->input('cpf');
+            $candidato->user()->associate($user);
             $candidato->save();
-            $candidato_id = $candidato->id;
+            //$candidato_id = $candidato->id;
 
             $telefone = new Telefone();
             $telefone->telefone_primario = $request->input('telefone_primario');
             $telefone->telefone_secundario = $request->input('telefone_secundario');
-            $telefone->candidato_id = $candidato_id;
+            $telefone->dono()->associate($candidato);
+            #$telefone->candidato_id = $candidato_id;
             $telefone->save();
 
             $endereco = new Endereco();
@@ -73,7 +75,8 @@ class CandidatoController extends Controller
             $endereco->cep = $request->input('cep');
             $endereco->estado = $request->input('estado');
             $endereco->cidade = $request->input('cidade');
-            $endereco->candidato_id = $candidato_id;
+            #$endereco->candidato_id = $candidato_id;
+            $endereco->dono()->associate($candidato);
             $endereco->save();
 
             return view('Candidato.show')->with('candidato', $candidato);
