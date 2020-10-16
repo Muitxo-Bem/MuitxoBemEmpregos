@@ -8,6 +8,8 @@ use Tests\TestCase;
 use App\Models\Candidato;
 use App\Models\Endereco;
 use App\Models\Telefone;
+use App\Models\User;
+use Hash;
 
 class CadastrarCandidatoTest extends TestCase
 {
@@ -24,10 +26,11 @@ class CadastrarCandidatoTest extends TestCase
     }
 
     public function inicializarArrayCandidato(){
-        $candidato = Candidato::factory()->make();
-        $dados = $candidato->toArray();
-        $dados['senha_confirmation'] = $dados['senha'];
-        return $dados;
+        $candidato = Candidato::factory()->make()->toArray();
+        $usr = User::factory()->make();
+        $usr['senha'] = Hash::make('123456789');
+        $usr->senha_confirmation = $usr['senha'];
+        return array_merge($candidato,$usr->toArray());
     }
 
     public function inicializarArrayTelefone(){

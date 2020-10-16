@@ -24,9 +24,6 @@ class VagaEmpregoFactory extends Factory
     public function definition()
     {
         return [
-            'empregador_id' => function(){
-                return Empregador::factory()->create()->id;
-            },
             'nome' => $this->faker->name,
             'descricao' => $this->faker->text($maxNbChars = 200),
             'quantidade_de_vagas' => $this->faker->randomDigitNotNull,
