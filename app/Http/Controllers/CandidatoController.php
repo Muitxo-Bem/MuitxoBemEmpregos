@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Candidato;
 use App\Models\Endereco;
 use App\Models\Telefone;
+use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash as FacadesHash;
@@ -40,30 +41,22 @@ class CandidatoController extends Controller
     public function store(Request $request)
     {
         try{
+            \App\Validator\UserValidator::validate($request->all());
             \App\Validator\CandidatoValidator::validate($request->all());
             \App\Validator\TelefoneValidator::validate($request->all());
             \App\Validator\EnderecoValidator::validate($request->all());
-
-            // $candidato = new Candidato();
-            // $candidato->nome = $request->input('nome');
-            // $candidato->cpf = $request->input('cpf');
-            // $candidato->email = $request->input('email');
-            // $candidato->senha = $request->input('senha');
-            // $candidato->telefones->telefone_primario = $request->input('telefone_primario');
-            // $candidato->telefones->telefone_secundario = $request->input('telefone_secundario');
-            // $candidato->endereco->rua = $request->input('rua');
-            // $candidato->endereco->bairro = $request->input('bairro');
-            // $candidato->endereco->numero = $request->input('numero');
-            // $candidato->endereco->cep = $request->input('cep');
-            // $candidato->endereco->estado = $request->input('estado');
-            // $candidato->endereco->cidade = $request->input('cidade');
-            // $candidato->push();
-
+        
+            $user = new User();
+            $user->email = $request->input('email');
+            $user->password = Hash::make($request->input('senha'));
+            $user->tipo = 'cliente';
+            $user->save();
+            $user_id = $user->id;
+            
             $candidato = new Candidato();
+            $candidato->user_id = $user_id;
             $candidato->nome = $request->input('nome');
             $candidato->cpf = $request->input('cpf');
-            $candidato->email = $request->input('email');
-            $candidato->senha = Hash::make($request->input('senha'));
             $candidato->save();
             $candidato_id = $candidato->id;
 
@@ -137,12 +130,12 @@ class CandidatoController extends Controller
             $candidatoAtualizar->senha = Hash::make($request->input('senha'));
             $candidatoAtualizar->update();
 
-            $telefoneAtualizar = Telefone::find($candidato->id);
+            $telefoneAtualizar = Telefone::where('candidato_id', '=', $candidato->id)->first();
             $telefoneAtualizar->telefone_primario = $request->input('telefone_primario');
             $telefoneAtualizar->telefone_secundario = $request->input('telefone_secundario');
             $telefoneAtualizar->update();
 
-            $enderecoAtualizar = Endereco::find($candidato->id);
+            $enderecoAtualizar = Endereco::where('candidato_id', '=', $candidato->id)->first();
             $enderecoAtualizar->rua = $request->input('rua');
             $enderecoAtualizar->bairro = $request->input('bairro');
             $enderecoAtualizar->numero = $request->input('numero');
