@@ -1,0 +1,16 @@
+#jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 2.375rem;
+    margin-left: 2.375rem;
+    margin-right: 2.375rem;
+}
+h1{
+    font-weight: bold;
+}
+p{
+    font-size: 17px;
+}
+#botao-vagas{
+    text-align: center;
+}
