@@ -30,7 +30,7 @@ class CadastrarCurriculoTest extends TestCase
         $curriculo = Curriculo::factory()->make();
         $curriculo = $curriculo->toArray();
         
-        $idioma = Idioma::factory()->make();
+        $idioma = Idioma::factory()->make(['idioma' => 'Inglês']);
         $idioma = $idioma->toArray();
 
         $areaFormacao = AreaFormacao::factory()->make();
@@ -40,11 +40,20 @@ class CadastrarCurriculoTest extends TestCase
 
         return $dados;
     }
-
+    public function logar(){
+        $usr = User::factory()->create(['tipo' => 'candidato']);
+        $cand = Candidato::factory()->make();
+        $cand->user_id = $usr->id;
+        $cand->save();
+        $dados = array_merge($usr->toArray(), $cand->toArray());
+        $dados['password'] = 'password';
+        $response = $this->followingRedirects()
+                    ->post('login',$dados);
+    }
     public function inicializarArrayCandidato(){
         $candidato = Candidato::factory()->make()->toArray();
         $usr = User::factory()->make();
-        $usr['senha'] = Hash::make('123456789');
+        $usr['senha'] = 'password';
         $usr->senha_confirmation = $usr['senha'];
         return array_merge($candidato,$usr->toArray());
     }
@@ -54,7 +63,7 @@ class CadastrarCurriculoTest extends TestCase
         $response = $this
             ->followingRedirects()
             ->post('curriculos', $curriculo)
-            ->assertSee($curriculo['idioma']);
+            ->assertDontSeeText('Informações do curriculo');
     }
 
     public function testCurriculoSemInfoAdicional(){
