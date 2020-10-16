@@ -41,9 +41,22 @@ class VagaEmpregoController extends Controller
             if($request['quantidade_de_vagas'] <= 0){
                 $request['ativa'] = 0;
             }
+
             $dados = $request->all();
-            \App\Models\VagaEmprego::create($dados);
-            return 'Vaga Criada';
+            $vaga = new VagaEmprego();
+            $vaga->ativa = 1;
+            $vaga->empregador_id = \Auth::user()->empregador()->get()->first()->id;
+            $vaga->nome = $request->input('nome');
+            $vaga->descricao = $request->input('descricao');
+            $vaga->quantidade_de_vagas = $request->input('quantidade_de_vagas');
+            $vaga->local_de_trabalho = $request->input('local_de_trabalho');
+            $vaga->requisitos = $request->input('requisitos');
+            $vaga->faixa_salarial = $request->input('faixa_salarial');
+            $vaga->diferenciais = $request->input('diferenciais');
+
+            $vaga->save();
+            return view('VagaEmprego.show')->with('vaga', $vaga);
+
         }catch (\App\Validator\ValidationException $e){
             return redirect(route('vagas.create'))->withErrors($e->getValidator())->withInput();
         }
