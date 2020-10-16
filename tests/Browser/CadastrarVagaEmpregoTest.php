@@ -17,8 +17,14 @@ class CadastrarVagaEmpregoTest extends DuskTestCase
     {
 
         $this->browse(function (Browser $browser) {
-        $browser->visit('/vagas/create')
-            ->type('empregador_id', '01')
+            $browser->visit('/login')
+                ->type('email', 'dusk@dusk.com')
+                ->type('password', '123456789')
+                ->press('Login')
+                ->pause(1000)
+                ->screenshot('LogadoEmpregador');
+        
+            $browser->visit('/vagas/create')
             ->type('nome', 'dev backend')
             ->type('descricao', 'dev frontend')
             ->type('quantidade_de_vagas', '10')
@@ -28,6 +34,6 @@ class CadastrarVagaEmpregoTest extends DuskTestCase
             ->type('diferenciais', 'qualquer coisa') //$endereco->rua
             ->press('Cadastrar')
             ->screenshot('Cadastro VagaEmprego')
-            ->assertSee('Vaga Criada');
+            ->assertSee('Local de Trabalho');
 });
 }}
