@@ -17,9 +17,9 @@ class CreateCandidatosTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('cpf')->unique();
-            $table->string('email')->unique();
-            $table->string('senha');
             $table->timestamps();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateCandidatosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Candidato');
+        Schema::dropIfExists('candidatos');
     }
 }
