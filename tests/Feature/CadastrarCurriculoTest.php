@@ -57,16 +57,6 @@ class CadastrarCurriculoTest extends TestCase
             ->assertSee($curriculo['idioma']);
     }
 
-    public function testCurriculoSemIdCandidato(){
-        $curriculo = $this->inicializarArrayCurriculo();
-        $curriculo['candidato_id'] = '';
-        $dados = ($curriculo);
-        $response = $this
-            ->followingRedirects()
-            ->post('curriculos', $dados)
-            ->assertSee('Id de candidato Vazio');
-    }
-
     public function testCurriculoSemInfoAdicional(){
         $curriculo = $this->inicializarArrayCurriculo();
         $curriculo['info_adicional'] = '';
