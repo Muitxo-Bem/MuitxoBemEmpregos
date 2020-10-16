@@ -1,0 +1,18 @@
+#jumbotron {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 2.375rem;
+    margin-right: 2.375rem;
+}
+
+h3{
+   text-align: center; 
+}
+
+#candidato-button{
+    text-align: center;
+}
+
+#empregador-button{
+    text-align: center;
+}
