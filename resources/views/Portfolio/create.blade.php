@@ -12,10 +12,6 @@
         <form action="{{route('portfolios.store')}}" method="POST">
             @csrf
             <div>
-                <label for='candidato_id'>Candidato ID</label>
-                <input type='text' name='candidato_id' id='candidato_id'>
-            </div>
-            <div>
                 <label for='link'>Link</label>
                 <input type='text' name='link' id='link'>
             </div>
