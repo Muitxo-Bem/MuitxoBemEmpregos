@@ -8,6 +8,7 @@ use App\Models\Endereco;
 use App\Models\Portfolio;
 use App\Models\Telefone;
 use App\Models\Curriculo;
+use App\Models\User;
 
 class CandidatoSeeder extends Seeder
 {
@@ -18,12 +19,15 @@ class CandidatoSeeder extends Seeder
      */
     public function run()
     {
-        Candidato::factory()
-                    ->times(25)
+        for($i=0; $i<25; $i++){
+            Candidato::factory()
                     ->has(Endereco::factory()->count(1))
                     ->has(Portfolio::factory()->count(1))
                     ->has(Telefone::factory()->count(1))
                     ->has(Curriculo::factory()->count(1))
+                    ->for(User::factory()->state(['tipo' =>'candidato']))
                     ->create();
+        }
+        
     }
 }

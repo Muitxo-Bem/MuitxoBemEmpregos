@@ -15,11 +15,13 @@ class CreateEmpregadorsTable extends Migration
     {
         Schema::create('empregadors', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
+
             $table->string('nome');
             $table->string('cpf')->unique();
-            $table->string('email')->unique();
-            $table->string('senha');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

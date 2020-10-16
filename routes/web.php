@@ -36,8 +36,7 @@ Route::post('vagas/close/{vaga}','App\Http\Controllers\VagaEmpregoController@clo
 Route::get('vagas/empregador/{vaga}',function(VagaEmprego $vaga){
     return view('VagaEmprego.showEmpregador')->with('vaga',$vaga);
 })->name('vagas.empregador.show');
+
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\VagaEmpregoController::class, 'index'])->name('home');
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
