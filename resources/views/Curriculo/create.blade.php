@@ -17,18 +17,7 @@
             @csrf
             <h1 class="col-md-1">Currículo</h1>
             <h2 class="col-md-6">Informações do curriculo</h2>
-
-            <div class="form-group">
-                <label for='candidato_id' class="col-md-3 col-form-label">candidato_id</label>
-                <div class="col-md-6">
-                    <input type='text' class="form-control @error('candidato_id') is-invalid @enderror" placeholder = "Detalhe o id de candidato" name='candidato_id' id='candidato_id' value="{{old('candidato_id')}}"/>    
-                    @error('candidato_id')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{$message}}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
+    
             <div class="form-group">
                 <label for='experiencia' class="col-md-1 col-form-label">Experiência</label>
                 <div class="col-md-6">
