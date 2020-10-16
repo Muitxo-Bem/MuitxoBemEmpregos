@@ -15,6 +15,7 @@
     <div class="container">
         <form action="{{route('candidatos.update', $candidato)}}" method="POST">
             @csrf
+            @method('PUT')
             <h1 class="col-md-10">Atualizar informações do candidato</h1>
             <h2 class="col-md-6">Informações do candidato</h2>
 
@@ -32,7 +33,7 @@
             <div class="form-group">
                 <label for='cpf' class="col-md-1 col-form-label">CPF</label>
                 <div class="col-md-6">
-                    <input type='text' class="form-control @error('cpf') is-invalid @enderror" placeholder = "Digite seu CPF" name='cpf' id='cpf' value="{{$candidato->cpf}}" disabled=""/>     
+                    <input type='text' class="form-control @error('cpf') is-invalid @enderror" placeholder = "Digite seu CPF" name='cpf' id='cpf' value="{{$candidato->cpf}}"/>     
                     @error('cpf')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>

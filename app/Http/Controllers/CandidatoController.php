@@ -117,18 +117,20 @@ class CandidatoController extends Controller
     public function update(Request $request, Candidato $candidato)
     {
         try{
+            \App\Validator\UserValidator::validate($request->all());
             \App\Validator\CandidatoValidator::validate($request->all());
             \App\Validator\TelefoneValidator::validate($request->all());
             \App\Validator\EnderecoValidator::validate($request->all());
 
-            //$parametros = $request->all();
             $candidatoAtualizar = Candidato::find($candidato->id);
-            //$candidatoAtualizar->update($parametros);
-            
             $candidatoAtualizar->nome = $request->input('nome');
-            $candidatoAtualizar->email = $request->input('email');
-            $candidatoAtualizar->senha = Hash::make($request->input('senha'));
+            $candidatoAtualizar->cpf = $request->input('cpf');
             $candidatoAtualizar->update();
+
+            $userAtualizar = User::find($candidato->user_id);
+            $userAtualizar->email = $request->input('email');
+            $userAtualizar->password = $request->input('senha');
+            $userAtualizar->update();
 
             $telefoneAtualizar = Telefone::where('candidato_id', '=', $candidato->id)->first();
             $telefoneAtualizar->telefone_primario = $request->input('telefone_primario');
@@ -144,15 +146,14 @@ class CandidatoController extends Controller
             $enderecoAtualizar->cidade = $request->input('cidade');
             $enderecoAtualizar->update();
 
-            return "Candidato atualizado";
+            return "Dados atualizados com sucesso";
 
         }catch(\App\Validator\ValidationException $exception){
 
-            return redirect(route('candidatos.edit'))
+            return redirect(route('candidatos.edit', $candidato->id))
             ->withErrors($exception->getValidator())
             ->withInput();
         }
-        
     }
 
     /**
