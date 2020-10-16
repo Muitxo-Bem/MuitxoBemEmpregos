@@ -9,6 +9,8 @@ use Tests\TestCase;
 use App\Models\Curriculo;
 use App\Models\Candidato;
 use App\Models\Idioma;
+use App\Models\User;
+use Hash;
 
 class CadastrarCurriculoTest extends TestCase
 {
@@ -40,15 +42,15 @@ class CadastrarCurriculoTest extends TestCase
     }
 
     public function inicializarArrayCandidato(){
-        $candidato = Candidato::factory()->make();
-        $dados = $candidato->toArray();
-        $dados['senha_confirmation'] = $dados['senha'];
-        return $dados;
+        $candidato = Candidato::factory()->make()->toArray();
+        $usr = User::factory()->make();
+        $usr['senha'] = Hash::make('123456789');
+        $usr->senha_confirmation = $usr['senha'];
+        return array_merge($candidato,$usr->toArray());
     }
 
     public function testCadastroCurriculo(){ // Verificar esse teste
         $curriculo = $this->inicializarArrayCurriculo();
-        $curriculo['candidato_id'] = Candidato::factory()->create()->id; //Salva um Candidato no Banco
         $response = $this
             ->followingRedirects()
             ->post('curriculos', $curriculo)

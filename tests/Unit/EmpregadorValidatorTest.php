@@ -3,7 +3,9 @@
 namespace Tests\Unit;
 
 use App\Models\Empregador;
+use App\Models\User;
 use App\Validator\EmpregadorValidator;
+use App\Validator\UserValidator;
 use App\Validator\ValidationException;
 //use Illuminate\Foundation\Testing\TestCase;
 use Tests\TestCase;
@@ -26,9 +28,12 @@ class EmpregadorValidatorTest extends TestCase
         $emp = new Empregador();
         $emp->nome = 'ErikJhonatta';
         $emp->cpf ='123.456.789-10';
-        $emp->email = 'erik@gmail.com';
-        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr = new User();
+        $usr->email = 'erik@gmail.com';
+        $usr->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        
+        UserValidator::validate($usr->toArray());
         EmpregadorValidator::validate($emp->toArray());
         $this->assertTrue(True);
     }
@@ -37,9 +42,12 @@ class EmpregadorValidatorTest extends TestCase
         $emp = new Empregador();
         $emp->nome = '';
         $emp->cpf ='123.456.789-10';
-        $emp->email = 'erik@gmail.com';
-        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr = new User();
+        $usr->email = 'erik@gmail.com';
+        $usr->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        
+        UserValidator::validate($usr->toArray());
 
         EmpregadorValidator::validate($emp->toArray());
     }
@@ -48,9 +56,12 @@ class EmpregadorValidatorTest extends TestCase
         $emp = new Empregador();
         $emp->nome = 'ensP65JekrmDCq9CWCK2RnqCc8D5dqpCq9CWCK2RnqCc8D5dqpCq9CWCK2RnqCc8D5dqpCq9CWCK2RnqCc8D5dqpCq9CWCK2RnqCc8D5dqpClJDzYjl30EIhOB6HUE8R2syeVN20';
         $emp->cpf ='123.456.789-10';
-        $emp->email = 'erik@gmail.com';
-        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr = new User();
+        $usr->email = 'erik@gmail.com';
+        $usr->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        
+        UserValidator::validate($usr->toArray());
 
         EmpregadorValidator::validate($emp->toArray());
     }
@@ -59,9 +70,12 @@ class EmpregadorValidatorTest extends TestCase
         $emp = new Empregador();
         $emp->nome = 'an';
         $emp->cpf ='123.456.789-10';
-        $emp->email = 'erik@gmail.com';
-        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr = new User();
+        $usr->email = 'erik@gmail.com';
+        $usr->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        
+        UserValidator::validate($usr->toArray());
 
         EmpregadorValidator::validate($emp->toArray());
     }
@@ -70,9 +84,12 @@ class EmpregadorValidatorTest extends TestCase
         $emp = new Empregador();
         $emp->nome = 'ErikJhonatta';
         $emp->cpf ='';
-        $emp->email = 'erik@gmail.com';
-        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr = new User();
+        $usr->email = 'erik@gmail.com';
+        $usr->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        
+        UserValidator::validate($usr->toArray());
 
         EmpregadorValidator::validate($emp->toArray());
     }
@@ -81,9 +98,12 @@ class EmpregadorValidatorTest extends TestCase
         $emp = new Empregador();
         $emp->nome = 'ErikJhonatta';
         $emp->cpf ='123';
-        $emp->email = 'erik@gmail.com';
-        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr = new User();
+        $usr->email = 'erik@gmail.com';
+        $usr->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        
+        UserValidator::validate($usr->toArray());
 
         EmpregadorValidator::validate($emp->toArray());
     }
@@ -92,10 +112,13 @@ class EmpregadorValidatorTest extends TestCase
         $emp = new Empregador();
         $emp->nome = 'ErikJhonatta';
         $emp->cpf ='123.456.789-10';
-        $emp->email = '';
-        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
 
+        $usr = new User();
+        $usr->email = '';
+        $usr->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        
+        UserValidator::validate($usr->toArray());
         EmpregadorValidator::validate($emp->toArray());
     }
     public function testEmailEmpregadorInvalido(){
@@ -103,10 +126,12 @@ class EmpregadorValidatorTest extends TestCase
         $emp = new Empregador();
         $emp->nome = 'ErikJhonatta';
         $emp->cpf ='123.456.789-10';
-        $emp->email = 'Email';
-        $emp->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-        $emp->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-
+        $usr = new User();
+        $usr->email = 'Email';
+        $usr->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        
+        UserValidator::validate($usr->toArray());
         EmpregadorValidator::validate($emp->toArray());
     }
     public function testSenhaEmpregadorVazia(){
@@ -114,10 +139,12 @@ class EmpregadorValidatorTest extends TestCase
         $emp = new Empregador();
         $emp->nome = 'ErikJhonatta';
         $emp->cpf ='123.456.789-10';
-        $emp->email = 'erik@gmail.com';
-        $emp->senha = "";
-        $emp->senha_confirmation = "";
-
+        $usr = new User();
+        $usr->email = 'secure@example.net';
+        $usr->senha = "";
+        $usr->senha_confirmation = "";
+        
+        UserValidator::validate($usr->toArray());
         EmpregadorValidator::validate($emp->toArray());
     }
     public function testSenhaEmpregadorMenorQueOito(){
@@ -125,9 +152,12 @@ class EmpregadorValidatorTest extends TestCase
         $emp = new Empregador();
         $emp->nome = 'ErikJhonatta';
         $emp->cpf ='123.456.789-10';
-        $emp->email = 'erik@gmail.com';
-        $emp->senha = "$2y";
-        $emp->senha_confirmation = "$2y";
+        $usr = new User();
+        $usr->email = 'erik@gmail.com';
+        $usr->senha = "$2y$";
+        $usr->senha_confirmation = "$2y$";
+        
+        UserValidator::validate($usr->toArray());
         EmpregadorValidator::validate($emp->toArray());
     }
 }

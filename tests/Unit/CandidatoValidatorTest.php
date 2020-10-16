@@ -3,7 +3,9 @@
 namespace Tests\Unit;
 
 use App\Models\Candidato;
+use App\Models\User;
 use App\Validator\CandidatoValidator;
+use App\Validator\UserValidator;
 use App\Validator\ValidationException;
 use Tests\TestCase;
 
@@ -56,49 +58,77 @@ class CandidatoValidatorTest extends TestCase
 
     public function testCandidatoSemEmail(){
         $this->expectException(ValidationException::class);
-        $candidato = Candidato::factory()->make(['email' => '']);
-        $candidato->senha_confirmation = $candidato->senha;
+        $candidato = Candidato::factory()->make();
+        $usr = new User();
+        $usr->email = '';
+        $usr->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        UserValidator::validate($usr->toArray());
         CandidatoValidator::validate($candidato->toArray());
     }
 
     public function testEmailCandidatoInvalido(){
         $this->expectException(ValidationException::class);
-        $candidato = Candidato::factory()->make(['email' => 'uniuEmail']);
-        $candidato->senha_confirmation = $candidato->senha;
+        $candidato = Candidato::factory()->make();
+        $usr = new User();
+        $usr->email = 'erik';
+        $usr->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $usr->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        UserValidator::validate($usr->toArray());
         CandidatoValidator::validate($candidato->toArray());
     }
 
     public function testCandidatoSemSenha(){
         $this->expectException(ValidationException::class);
-        $candidato = Candidato::factory()->make(['senha' => '']);
-        $candidato->senha_confirmation = $candidato->senha;
+        $candidato = Candidato::factory()->make();
+        $usr = new User();
+        $usr->email = 'erik@gmail.com';
+        $usr->senha = "";
+        $usr->senha_confirmation = "";
+        UserValidator::validate($usr->toArray());
         CandidatoValidator::validate($candidato->toArray());
     }
 
     public function testSenhaCandidatoMenorQueOito(){
         $this->expectException(ValidationException::class);
-        $candidato = Candidato::factory()->make(['senha' => '123321']);
-        $candidato->senha_confirmation = $candidato->senha;
+        $candidato = Candidato::factory()->make();
+        $usr = new User();
+        $usr->email = 'erik@gmail.com';
+        $usr->senha = "$2y$";
+        $usr->senha_confirmation = "$2y$";
+        UserValidator::validate($usr->toArray());
         CandidatoValidator::validate($candidato->toArray());
     }
 
     public function testSenhaCandidatoMaiorQue64(){
         $this->expectException(ValidationException::class);
-        $candidato = Candidato::factory()->make(['senha' => 'uuuuuuuuuuuuuuuuuuuuuuuuunnnnnnnnnnnnnnnnnnnnnnnnnnnnniiiiiiiiiiiiiiiiiiiiiiiiiiiiiiuuuuuuuuuuuuuuuuuuuuuuuu']);
-        $candidato->senha_confirmation = $candidato->senha;
+        $candidato = Candidato::factory()->make();
+        $usr = new User();
+        $usr->email = 'erik@gmail.com';
+        $usr->senha = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaigi";
+        $usr->senha_confirmation = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaigi";
+        UserValidator::validate($usr->toArray());
         CandidatoValidator::validate($candidato->toArray());
     }
 
     public function testSenhaCandidatoDiferente(){
         $this->expectException(ValidationException::class);
         $candidato = Candidato::factory()->make();
-        $candidato->senha_confirmation = '20ashudhausdhiuasha100234';
+        $usr = new User();
+        $usr->email = 'erik@gmail.com';
+        $usr->senha = "$2ytestesenha";
+        $usr->senha_confirmation = "$2ysenhateste";
+        UserValidator::validate($usr->toArray());
         CandidatoValidator::validate($candidato->toArray());
     }
 
     public function testCandidatoCorreto(){
         $candidato = Candidato::factory()->make();
-        $candidato->senha_confirmation = $candidato->senha;
+        $usr = new User();
+        $usr->email = 'erik@gmail.com';
+        $usr->senha = "$2ycorreta";
+        $usr->senha_confirmation = "$2ycorreta";
+        UserValidator::validate($usr->toArray());
         CandidatoValidator::validate($candidato->toArray());    
         $this->assertTrue(True);
     }
