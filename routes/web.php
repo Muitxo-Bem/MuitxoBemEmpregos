@@ -15,7 +15,7 @@ use App\Models\VagaEmprego;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('/');
 Route::get('debug', function (){
     $a = \App\Models\Empregador::factory()->make();
 //    return $a;
@@ -40,3 +40,6 @@ Route::get('vagas/empregador/{vaga}',function(VagaEmprego $vaga){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/sobre',function(){
+    return 'Sobre';
+})->name('sobre');
