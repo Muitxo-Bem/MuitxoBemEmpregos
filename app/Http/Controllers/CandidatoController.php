@@ -49,7 +49,7 @@ class CandidatoController extends Controller
             $user = new User();
             $user->email = $request->input('email');
             $user->password = Hash::make($request->input('senha'));
-            $user->tipo = 'cliente';
+            $user->tipo = 'candidato';
             $user->save();
             $user_id = $user->id;
             
