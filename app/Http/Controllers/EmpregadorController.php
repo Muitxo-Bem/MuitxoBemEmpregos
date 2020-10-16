@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Telefone;
-use App\Validator\TelefoneValidator;
-use Hash;
-
 use App\Models\Empregador;
+use App\Models\Telefone;
+use App\Models\User;
+use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class EmpregadorController extends Controller
 {
@@ -40,17 +40,32 @@ class EmpregadorController extends Controller
     public function store(Request $request)
     {
         try{
+            \App\Validator\UserValidator::validate($request->all());
             \App\Validator\EmpregadorValidator::validate($request->all());
-            $dados = $request->all();
-            $dados['senha'] = Hash::make($dados['senha']);
-            $emp = Empregador::create($dados);
-            $request['empregador_id'] = $emp->id;
-            $request['candidato_id'] = null;
-            $dados = $request->all();
-            TelefoneValidator::validate($request->all());
-            Telefone::create($dados);
+            \App\Validator\TelefoneValidator::validate($request->all());
+
+            $user = new User();
+            $user->email = $request->input('email');
+            $user->password = Hash::make($request->input('senha'));
+            $user->tipo = 'empregador';
+            $user->save();
+            $user_id = $user->id;
+
+            $empregador = new Empregador();
+            $empregador->user_id = $user_id;
+            $empregador->nome = $request->input('nome');
+            $empregador->cpf = $request->input('cpf');
+            $empregador->save();
+            $empregador_id = $empregador->id;
+
+            $telefone = new Telefone();
+            $telefone->telefone_primario = $request->input('telefone_primario');
+            $telefone->telefone_secundario = $request->input('telefone_secundario');
+            $telefone->empregador_id = $empregador_id;
+            $telefone->save();
 
             return 'Empregador cadastrado';
+
         }catch(\App\Validator\ValidationException $exception){
             return redirect(route('empregadores.create'))
             ->withErrors($exception->getValidator())
