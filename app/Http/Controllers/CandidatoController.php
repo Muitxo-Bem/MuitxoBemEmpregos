@@ -41,6 +41,7 @@ class CandidatoController extends Controller
     public function store(Request $request)
     {
         try{
+            \App\Validator\UserValidator::validate($request->all());
             \App\Validator\CandidatoValidator::validate($request->all());
             \App\Validator\TelefoneValidator::validate($request->all());
             \App\Validator\EnderecoValidator::validate($request->all());
