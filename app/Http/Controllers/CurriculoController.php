@@ -6,6 +6,7 @@ use App\Models\Curriculo;
 use App\Models\Idioma;
 use App\Models\AreaFormacao;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class CurriculoController extends Controller
 {
@@ -44,7 +45,7 @@ class CurriculoController extends Controller
             \App\Validator\AreaFormacaoValidator::validate($request->all());
 
             $curriculo = new Curriculo();
-            $curriculo->candidato_id = $request->input('candidato_id');
+            $curriculo->candidato_id = \Auth::user()->candidato()->get()->first()->id;
             $curriculo->info_adicional = $request->input('info_adicional');
             $curriculo->experiencia = $request->input('experiencia');
             $curriculo->save();
@@ -86,7 +87,7 @@ class CurriculoController extends Controller
      */
     public function show(Curriculo $curriculo)
     {
-        return view('Curriculo.show')->with('curiculo',$curriculo);
+        return view('Curriculo.show')->with('curriculo',$curriculo);
     }
 
     /**
