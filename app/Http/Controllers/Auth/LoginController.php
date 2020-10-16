@@ -38,7 +38,12 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // public function redirectTo(){
-
-    // }
+    public function redirectTo(){
+        if(\Auth::user()->tipo == 'candidato'){
+            return route('candidatos.show',['candidato' => \Auth::user()->candidato()->get()->first()->id]);
+        }
+        elseif (\Auth::user()->tipo == 'empregador') {
+            return route('empregadores.show',['empregadore' => \Auth::user()->empregador()->get()->first()->id]);
+        }
+    }
 }
