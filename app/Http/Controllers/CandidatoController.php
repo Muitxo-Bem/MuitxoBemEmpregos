@@ -120,34 +120,29 @@ class CandidatoController extends Controller
     public function update(Request $request, Candidato $candidato)
     {
         try{
-            \App\Validator\UserValidator::validate($request->all());
             \App\Validator\CandidatoValidator::validate($request->all());
+            \App\Validator\UserValidator::validate($request->all());
             \App\Validator\TelefoneValidator::validate($request->all());
             \App\Validator\EnderecoValidator::validate($request->all());
 
-            $candidatoAtualizar = Candidato::find($candidato->id);
-            $candidatoAtualizar->nome = $request->input('nome');
-            $candidatoAtualizar->cpf = $request->input('cpf');
-            $candidatoAtualizar->update();
+            $candidato->update(['nome' => $request->input('nome')
+                               ]);
 
-            $userAtualizar = User::find($candidato->user_id);
-            $userAtualizar->email = $request->input('email');
-            $userAtualizar->password = $request->input('senha');
-            $userAtualizar->update();
+            $candidato->user()->update(['email' => $request->input('email'),
+                                        'password' => $request->input('senha'),
+                                       ]);
 
-            $telefoneAtualizar = Telefone::where('candidato_id', '=', $candidato->id)->first();
-            $telefoneAtualizar->telefone_primario = $request->input('telefone_primario');
-            $telefoneAtualizar->telefone_secundario = $request->input('telefone_secundario');
-            $telefoneAtualizar->update();
+            $candidato->telefones()->update(['telefone_primario' => $request->input('telefone_primario'), 
+                                             'telefone_secundario' => $request->input('telefone_secundario')
+                                            ]);
 
-            $enderecoAtualizar = Endereco::where('candidato_id', '=', $candidato->id)->first();
-            $enderecoAtualizar->rua = $request->input('rua');
-            $enderecoAtualizar->bairro = $request->input('bairro');
-            $enderecoAtualizar->numero = $request->input('numero');
-            $enderecoAtualizar->cep = $request->input('cep');
-            $enderecoAtualizar->estado = $request->input('estado');
-            $enderecoAtualizar->cidade = $request->input('cidade');
-            $enderecoAtualizar->update();
+            $candidato->endereco()->update(['rua' => $request->input('rua'),
+                                            'bairro' => $request->input('bairro'),
+                                            'numero' => $request->input('numero'),
+                                            'cep' => $request->input('cep'),
+                                            'estado' => $request->input('estado'),
+                                            'cidade' => $request->input('cidade'),
+                                           ]);
 
             return "Dados atualizados com sucesso";
 
