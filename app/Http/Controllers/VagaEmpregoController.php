@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Candidato;
 use App\Models\VagaEmprego;
 use Illuminate\Http\Request;
 
@@ -108,5 +109,15 @@ class VagaEmpregoController extends Controller
     public function close(VagaEmprego $vaga){
         VagaEmprego::where('id',$vaga->id)->update(['ativa'=>0]);
         return redirect()->back();
+    }
+
+    public function candidatar(VagaEmprego $vaga){
+        if(\Auth::check() and \Auth::user()->tipo == 'candidato'){
+            \DB::insert('insert into candidato_vaga_empregos (candidato_id, vaga_id) values (?, ?)', [\Auth::user()->candidato()->get()->first()->id, $vaga->id]);
+        }
+        elseif(\Auth::user()->tipo == 'empregador'){
+            return "VagaEmpregoController candidatar method";
+        }
+        return redirect()->route('login');
     }
 }

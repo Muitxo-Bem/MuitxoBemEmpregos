@@ -4,7 +4,6 @@
 @endsection
 @section('content')
 <h3 id='nome'>{{$vaga->nome}}</h3>
-
 <div class="jumbotron " id='jumbotron'>
     <div class="container-fluid">
         <div class="row">
@@ -73,9 +72,74 @@
                  {{-- Fazer Ação de se candidatar pra vaga, precisa ter o login
                     do candidato, e pegar ele na sessão, decrementar quantidade de vagas
                     --}}
-                <button type="button" class="btn btn-lg btn-outline-info btn-block">
-                    Candidatar-se
-                </button>
+                @if(\Auth::check() and \Auth::user()->tipo == 'candidato')
+                 <form action = "{{route('vagas.candidatar',['vaga' => $vaga])}}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-lg btn-outline-info btn-block">
+                        Candidatar-se
+                    </button>
+                </form>
+                @elseif(\Auth::check() and \Auth::user()->tipo == 'empregador' and $vaga->ativa == 1)
+                    <form action="{{route('vagas.close',[$vaga->id])}}" method="POST">
+                        @csrf
+                    <button type="submit" class="btn btn-lg btn-outline-info btn-block">
+                        Fechar Vaga
+                    </button>
+                    </form>
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            <h2 class="my-2">Aplicações</h2>
+                            <table class="table">
+                                <thead class="black white-text">
+                                  <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Nome do Candidato</th>
+                                    <th scope="col">Currículo</th>
+                                    <th scope="col">Portfólio</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($vaga->aplicacoes()->get() as $candidato)
+                                        <tr class='vaga'>
+                                            <td><img id = 'img-vaga' src="https://www.sportsjournalists.co.uk/wp-content/uploads/2016/04/Google-logo-for-featured-pic.jpg" alt="img"></td>
+                                            <td class='nomeCandidato'><a href="#">{{$candidato->nome}}</a></td>
+                                            <td class='nomeCandidato'><a href="#">{{$candidato->curriculo}}</a></td>
+                                            <td class='nomeCandidato'><a href="#">{{$candidato->portfolio}}</a></td>
+                                        </tr>    
+                                    @endforeach
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                @elseif(\Auth::check() and \Auth::user()->tipo == 'empregador' and $vaga->ativa == 0)
+                    </form>
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            <h2 class="my-2">Aplicações</h2>
+                            <table class="table">
+                                <thead class="black white-text">
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Nome do Candidato</th>
+                                    <th scope="col">Currículo</th>
+                                    <th scope="col">Portfólio</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($vaga->aplicacoes()->get() as $candidato)
+                                        <tr class='vaga'>
+                                            <td><img id = 'img-vaga' src="https://www.sportsjournalists.co.uk/wp-content/uploads/2016/04/Google-logo-for-featured-pic.jpg" alt="img"></td>
+                                            <td class='nomeCandidato'><a href="#">{{$candidato->nome}}</a></td>
+                                            <td class='nomeCandidato'><a href="#">{{$candidato->curriculo}}</a></td>
+                                            <td class='nomeCandidato'><a href="#">{{$candidato->portfolio}}</a></td>
+                                        </tr>    
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                @endif
+                
             </div>
         </div>
     </div>
