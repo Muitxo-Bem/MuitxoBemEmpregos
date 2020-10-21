@@ -33,9 +33,7 @@ Route::resource('area_formacaos','App\Http\Controllers\AreaFormacaoController');
 
 Route::post('vagas/close/{vaga}','App\Http\Controllers\VagaEmpregoController@close')->name('vagas.close');
 
-Route::get('vagas/empregador/{vaga}',function(VagaEmprego $vaga){
-    return view('VagaEmprego.showEmpregador')->with('vaga',$vaga);
-})->name('vagas.empregador.show');
+Route::post('vagas/aplicar/{vaga}','App\Http\Controllers\VagaEmpregoController@candidatar')->name('vagas.candidatar');
 
 Auth::routes();
 
