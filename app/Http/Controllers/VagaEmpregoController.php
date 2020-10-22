@@ -80,9 +80,9 @@ class VagaEmpregoController extends Controller
      * @param  \App\Models\VagaEmprego  $vagaEmprego
      * @return \Illuminate\Http\Response
      */
-    public function edit(VagaEmprego $vagaEmprego)
+    public function edit(VagaEmprego $vaga)
     {
-        //
+        return view('VagaEmprego.edit')->with('vaga',$vaga);
     }
 
     /**
@@ -92,9 +92,25 @@ class VagaEmpregoController extends Controller
      * @param  \App\Models\VagaEmprego  $vagaEmprego
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VagaEmprego $vagaEmprego)
+    public function update(Request $request, VagaEmprego $vaga)
     {
-        //
+        try{
+            \App\Validator\VagaEmpregoValidator::validate($request->all());
+
+            $vaga->update(['nome' => $request->input('nome')]);
+            $vaga->update(['descricao' => $request->input('descricao')]);
+            $vaga->update(['quantitade_de_vagas' => $request->input('quantidade_de_vagas')]);
+            $vaga->update(['local_de_trabalho' => $request->input('local_de_trabalho')]);
+            $vaga->update(['requisitos' => $request->input('requisitos')]);
+            $vaga->update(['faixa_salarial' => $request->input('faixa_salarial')]);
+            $vaga->update(['diferenciais' => $request->input('diferenciais')]);
+
+            return redirect()->route('vagas.show',$vaga->id)->with('success', 'Atualizado com Sucesso');
+        }catch(\App\Validator\ValidationException $exception){
+            return redirect(route('vagas.edit', $vaga->id))
+            ->withErrors($exception->getValidator())
+            ->withInput();
+        }
     }
 
     /**
@@ -103,7 +119,7 @@ class VagaEmpregoController extends Controller
      * @param  \App\Models\VagaEmprego  $vagaEmprego
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VagaEmprego $vagaEmprego)
+    public function destroy(VagaEmprego $vaga)
     {
         //
     }
