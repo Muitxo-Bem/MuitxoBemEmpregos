@@ -25,6 +25,7 @@ class VagaEmpregoController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',VagaEmprego::class);
         return view('VagaEmprego.create');
     }
 
@@ -107,17 +108,21 @@ class VagaEmpregoController extends Controller
         //
     }
     public function close(VagaEmprego $vaga){
+        // dd($vaga);
+        $this->authorize('close',$vaga);
         VagaEmprego::where('id',$vaga->id)->update(['ativa'=>0]);
-        return redirect()->back();
+        return redirect()->route('vagas.show',['vaga' => $vaga->id]);
     }
 
     public function candidatar(VagaEmprego $vaga){
-        if(\Auth::check() and \Auth::user()->tipo == 'candidato'){
-            \DB::insert('insert into candidato_vaga_empregos (candidato_id, vaga_id) values (?, ?)', [\Auth::user()->candidato()->get()->first()->id, $vaga->id]);
+        if(!\Auth::check()){
+            return redirect()->route('login');    
         }
-        elseif(\Auth::user()->tipo == 'empregador'){
-            return "VagaEmpregoController candidatar method";
-        }
-        return redirect()->route('login');
+        $this->authorize('candidatar',$vaga);
+        $data = new \DateTime();
+        \DB::insert('insert into candidato_vaga_empregos (candidato_id, vaga_id,created_at,updated_at) values (?, ?, ?, ?)', [\Auth::user()->candidato()->get()->first()->id, $vaga->id, $data,$data]);
+        return redirect()->back();
+        
+        
     }
 }
