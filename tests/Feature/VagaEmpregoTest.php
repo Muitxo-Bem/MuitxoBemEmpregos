@@ -41,6 +41,24 @@ class VagaEmpregoTest extends TestCase
         $response = $this->followingRedirects()
                     ->post('login',$dados);
     }
+    
+    public function testEditarVaga(){
+        $this->logarEmpregador();
+
+        $dados['nome'] = 'NovoNomeEditarTeste';
+        $response = $this
+                    ->followingRedirects()
+                    ->put('vagas/1',$dados)
+                    ->assertSee('NovoNomeEditarTeste');
+    }
+    
+    public function testCandidatarseVaga(){
+        $this->logarCandidato();
+        $response = $this
+                    ->followingRedirects()
+                    ->post('vagas/aplicar/1')
+                    ->assertDontSee('Candidatar-se');
+    }
     public function testFecharVaga(){//depende do metodo cadastroVagaEmprego no teste de cadastro
         $this->logarEmpregador();
         $response = $this
@@ -49,12 +67,7 @@ class VagaEmpregoTest extends TestCase
                     ->assertDontSee('Fechar Vaga');
                     
     }
-    public function testCandidatarseVaga(){
-        $this->logarCandidato();
-        $response = $this
-                    ->followingRedirects()
-                    ->post('vagas/aplicar/1')
-                    ->assertDontSee('Candidatar-se');
-    }
+    
+    
 
 }
