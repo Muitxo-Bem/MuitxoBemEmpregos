@@ -42,17 +42,7 @@ class VagaEmpregoTest extends TestCase
                     ->post('login',$dados);
     }
     
-    public function testEditarVaga(){
-        $this->post('/logout');
-        $this->logarEmpregador();
-
-        $dados['nome'] = 'NovoNomeEditarTeste';
-        $response = $this
-                    ->followingRedirects()
-                    ->put('vagas/1',$dados)
-                    ->assertSee('NovoNomeEditarTeste');
-    }
-    
+   
     public function testCandidatarseVaga(){
         $this->logarCandidato();
         $response = $this
