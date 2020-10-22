@@ -145,7 +145,7 @@ class CandidatoController extends Controller
                                             'cidade' => $request->input('cidade'),
                                            ]);
 
-            return "Dados atualizados com sucesso";
+            return view('Candidato.show')->with('candidato', $candidato);
 
         }catch(\App\Validator\ValidationException $exception){
 
