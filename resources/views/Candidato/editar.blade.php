@@ -16,6 +16,7 @@
         <form action="{{route('candidatos.update', $candidato)}}" method="POST">
             @csrf
             @method('PUT')
+
             <h1 class="col-md-10">Atualizar informações do candidato</h1>
             <h2 class="col-md-6">Informações do candidato</h2>
 
@@ -44,7 +45,7 @@
             <div class="form-group">
                 <label for='email' class="col-md-1 col-form-label">Email</label>
                 <div class="col-md-6">
-                    <input type='text' class="form-control @error('email') is-invalid @enderror" placeholder = "Digite seu email" name='email' id='email' value="{{$candidato->user()->get('email')}}"/>  
+                    <input type='text' class="form-control @error('email') is-invalid @enderror" placeholder = "Digite seu email" name='email' id='email' value="{{$candidato->user->email}}"/>  
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -81,7 +82,7 @@
             <div class="form-group">
                 <label for='telefone_primario' class="col-md-3 col-form-label">Telefone primário</label>
                 <div class="col-md-6">
-                    <input type='text' class="form-control @error('telefone_primario') is-invalid @enderror" placeholder = "Digite seu telefone primário" name='telefone_primario' id='telefone_primario' value="{{$candidato->telefones()->get('telefone_primario')}}"/>
+                    <input type='text' class="form-control @error('telefone_primario') is-invalid @enderror" placeholder = "Digite seu telefone primário" name='telefone_primario' id='telefone_primario' value="{{$candidato->telefones()->get()->first()->telefone_primario}}"/>
                     @error('telefone_primario')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -92,7 +93,7 @@
             <div class="form-group">
                 <label for='telefone_secundario' class="col-md-3 col-form-label">Telefone secundário</label>
                 <div class="col-md-6">
-                    <input type='text' class="form-control @error('telefone_secundario') is-invalid @enderror" placeholder = "Digite seu telefone secundário (opcional)" name='telefone_secundario' id='telefone_secundario' value="{{$candidato->telefones()->get('telefone_secundario')}}"/>
+                    <input type='text' class="form-control @error('telefone_secundario') is-invalid @enderror" placeholder = "Digite seu telefone secundário (opcional)" name='telefone_secundario' id='telefone_secundario' value="{{$candidato->telefones()->get()->first()->telefone_secundario}}"/>
                     @error('telefone_secundario')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -106,7 +107,7 @@
             <div class="form-group">
                 <label for='rua' class="col-md-1 col-form-label">Rua</label>
                 <div class="col-md-6">
-                    <input type='text' class="form-control @error('rua') is-invalid @enderror" placeholder = "Digite sua rua" name='rua' id='rua' value="{{$candidato->endereco()->get('rua')}}"/>  
+                    <input type='text' class="form-control @error('rua') is-invalid @enderror" placeholder = "Digite sua rua" name='rua' id='rua' value="{{$candidato->endereco->rua}}"/>  
                     @error('rua')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -117,7 +118,7 @@
             <div class="form-group">
                 <label for='bairro' class="col-md-1 col-form-label">Bairro</label>
                 <div class="col-md-6">
-                    <input type='text' class="form-control @error('bairro') is-invalid @enderror" placeholder = "Digite seu bairro" name='bairro' id='bairro' value="{{$candidato->endereco()->get('bairro')}}"/> 
+                    <input type='text' class="form-control @error('bairro') is-invalid @enderror" placeholder = "Digite seu bairro" name='bairro' id='bairro' value="{{$candidato->endereco->bairro}}"/> 
                     @error('bairro')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -128,7 +129,7 @@
             <div class="form-group">
                 <label for='numero' class="col-md-1 col-form-label">Número</label>
                 <div class="col-md-6">
-                    <input type='text' class="form-control @error('numero') is-invalid @enderror" placeholder = "Digite seu número" name='numero' id='numero' value="{{$candidato->endereco()->get('numero')}}"/>  
+                    <input type='text' class="form-control @error('numero') is-invalid @enderror" placeholder = "Digite seu número" name='numero' id='numero' value="{{$candidato->endereco->numero}}"/>  
                     @error('numero')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -139,7 +140,7 @@
             <div class="form-group">
                 <label for='cep' class="col-md-1 col-form-label">CEP</label>
                 <div class="col-md-6">
-                    <input type='text' class="form-control @error('cep') is-invalid @enderror" placeholder = "Digite seu CEP" name='cep' id='cep' value="{{$candidato->endereco()->get('cep')}}"/>  
+                    <input type='text' class="form-control @error('cep') is-invalid @enderror" placeholder = "Digite seu CEP" name='cep' id='cep' value="{{$candidato->endereco->cep}}"/>  
                     @error('cep')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -150,8 +151,8 @@
             <div class="form-group">
                 <label for='estado' class="col-md-1 col-form-label">Estado</label>
                 <div class="col-md-6">
-                    <select name="estado" id="estado" class="form-control @error('estado') is-invalid @enderror" value="{{$candidato->endereco()->get('estado')}}"> 
-                        <option selected>Selecione seu estado</option>
+                    <select name="estado" id="estado" class="form-control @error('estado') is-invalid @enderror" value="{{$candidato->endereco->estado}}"> 
+                        <option selected>{{$candidato->endereco->estado}}</option>
                         <option>AC</option>
                         <option>AL</option> 
                         <option>AM</option>
@@ -191,7 +192,7 @@
             <div class="form-group">
                 <label for='cidade' class="col-md-1 col-form-label">Cidade</label>
                 <div class="col-md-6">
-                    <input type='text' class="form-control @error('cidade') is-invalid @enderror" placeholder = "Digite sua cidade" name='cidade' id='cidade' value="{{$candidato->endereco()->get('cidade')}}"/>  
+                    <input type='text' class="form-control @error('cidade') is-invalid @enderror" placeholder = "Digite sua cidade" name='cidade' id='cidade' value="{{$candidato->endereco->cidade}}"/>  
                     @error('cidade')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
