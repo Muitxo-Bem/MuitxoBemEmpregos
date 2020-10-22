@@ -39,7 +39,7 @@ class CadastrarCandidatoTest extends DuskTestCase
                     ->type('cidade', 'Ibimirim') //$endereco->cidade
                     ->press('Cadastrar')
                     ->screenshot('Cadastro Candidato')
-                    ->assertSee('Apagar Perfil');
+                    ->assertSee('Login');
         });
     }
 }
