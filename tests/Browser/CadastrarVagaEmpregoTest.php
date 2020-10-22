@@ -13,13 +13,14 @@ class CadastrarVagaEmpregoTest extends DuskTestCase
      *
      * @return void
      */
-    public function testCadastrarVagaEmprego()
-    {
-
+    //rodar artisan test antes do dusk
+    public function testCadastrarVagaEmprego()//N mudar esse nome, pq esse teste roda primeiro do que o candidatar-se
+    {                                         //To usando essa vaga que é criada aqui pra testar lá
+                                              //Depois to fechando ela
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
-                ->type('email', 'dusk@dusk.com')
-                ->type('password', '123456789')
+                ->type('email', 'empregador@vagaemprego.com')
+                ->type('password', 'password')
                 ->press('Login')
                 ->pause(1000)
                 ->screenshot('LogadoEmpregador');

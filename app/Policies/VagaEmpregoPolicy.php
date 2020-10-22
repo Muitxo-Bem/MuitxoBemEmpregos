@@ -15,7 +15,28 @@ class VagaEmpregoPolicy
     {
         return \Auth::user()->tipo == 'empregador';
     }
-
+    public function close(User $user,VagaEmprego $vaga){
+        if(\Auth::user()->tipo == 'empregador' and $vaga->empregador->user_id == \Auth::user()->id and $vaga->ativa == 1){
+            return True;
+        }
+        return False;
+    }
+    public function verAplic(User $user, VagaEmprego $vaga){
+        return \Auth::user()->tipo == 'empregador' and $vaga->empregador->user_id == \Auth::user()->id;
+    }
+    
+    public function candidatar(User $user, VagaEmprego $vaga){
+        if(\Auth::check() and \Auth::user()->tipo == 'candidato' and $vaga->ativa == 1 and !$vaga->aplicacoes()->get()->contains(\Auth::user()->candidato)){
+            return True;
+        }
+        return False;
+    }
+    public function candView(User $user,VagaEmprego $vaga){
+        if((!\Auth::check()) or (\Auth::user()->tipo == 'candidato' and $vaga->ativa == 1 and !$vaga->aplicacoes()->get()->contains(\Auth::user()->candidato))){
+            return True;
+        }
+        return False;
+    }
     public function update(User $user, VagaEmprego $vagaEmprego)
     {
         if(\Auth::user()->tipo == 'empregador' and $vagaEmprego->empregador->user_id == \Auth::user()->id){
@@ -32,12 +53,6 @@ class VagaEmpregoPolicy
         return False;
     }
 
-    public function showEmpregador(User $user, VagaEmprego $vagaEmprego){
-        
-    }
-    public function showCandidato(User $user, VagaEmprego $vagaEmprego){
-
-    }
 
   
 }

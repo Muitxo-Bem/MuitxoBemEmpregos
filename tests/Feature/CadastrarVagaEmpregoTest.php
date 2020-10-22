@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Candidato;
 use App\Models\Empregador;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -28,12 +29,19 @@ class CadastrarVagaEmpregoTest extends TestCase
         $dados = $vagaEmprego->toArray();
         return $dados;
     }
-    public function logar(){
-        $usr = User::factory()->create(['tipo' => 'empregador']);
+    public function createLogins(){
+        $usr = User::factory()->create(['tipo' => 'empregador', 'email' => 'empregador@vagaemprego.com']);
         $emp = Empregador::factory()->make();
         $emp->user_id = $usr->id;
         $emp->save();
-        $dados = array_merge($usr->toArray(), $emp->toArray());
+
+        $usr2 = User::factory()->create(['tipo' => 'candidato', 'email' => 'candidato@vagaemprego.com']);
+        $cand = Candidato::factory()->make();
+        $cand->user_id = $usr2->id;
+        $cand->save();
+    }
+    public function logarEmpregador(){
+        $dados['email'] = 'empregador@vagaemprego.com';
         $dados['password'] = 'password';
         $response = $this->followingRedirects()
                     ->post('login',$dados);
@@ -42,7 +50,8 @@ class CadastrarVagaEmpregoTest extends TestCase
         $vagaEmprego = $this->inicializarArrayVagaEmprego();
 
         $dados = ($vagaEmprego);
-        $this->logar();
+        $this->createLogins();
+        $this->logarEmpregador();
         $response = $this
             ->followingRedirects()
             ->post('vagas', $dados)
@@ -53,6 +62,7 @@ class CadastrarVagaEmpregoTest extends TestCase
         $vagaEmprego = $this->inicializarArrayVagaEmprego();
         $vagaEmprego['descricao'] = '';
         $dados = ($vagaEmprego);
+        $this->logarEmpregador();
         $response = $this
             ->followingRedirects()
             ->post('vagas', $dados)
