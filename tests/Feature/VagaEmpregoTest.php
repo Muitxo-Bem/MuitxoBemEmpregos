@@ -43,6 +43,7 @@ class VagaEmpregoTest extends TestCase
     }
     
     public function testEditarVaga(){
+        $this->post('/logout');
         $this->logarEmpregador();
 
         $dados['nome'] = 'NovoNomeEditarTeste';
