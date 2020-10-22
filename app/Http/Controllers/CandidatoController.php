@@ -79,7 +79,8 @@ class CandidatoController extends Controller
             $endereco->dono()->associate($candidato);
             $endereco->save();
 
-            return view('Candidato.show')->with('candidato', $candidato);
+            return redirect((route('login')));
+            #return view('Candidato.show')->with('candidato', $candidato);
 
         }catch(\App\Validator\ValidationException $exception){
             return redirect(route('candidatos.create'))
