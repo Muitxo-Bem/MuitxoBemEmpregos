@@ -4,14 +4,18 @@
 @endsection
 @section('content')
 <div class='container-fluid'>
-<div class='row'>
-<div class='col-md-6'>
-    <h3 id='nome'>{{$vaga->nome}}</h3>
-</div>
-<div class='col-md-6' id='editar'>
-    <h3 id='nome'>Botao de Editar</h3>
-</div>
-</div>
+    <div class='row'>
+        <div class='col-md-6'>
+            <h3 id='nome'>{{$vaga->nome}}</h3>
+        </div>
+        @can('update',$vaga)
+        <div class='col-md-6' id='editar'>
+            <form action="{{route('vagas.edit',['vaga' => $vaga->id])}}" method="GET"> 
+                <button type="submit" class="btn btn-secondary">Editar Vaga</button>
+            </form>
+        </div>
+        @endcan
+    </div>
 </div>
 <div class="jumbotron " id='jumbotron'>
     <div class="container-fluid">

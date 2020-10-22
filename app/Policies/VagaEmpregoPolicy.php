@@ -34,9 +34,8 @@ class VagaEmpregoPolicy
     
     public function update(User $user, VagaEmprego $vagaEmprego)
     {
-        dd($vagaEmprego);
         if(\Auth::check() and \Auth::user()->tipo == 'empregador' and $vagaEmprego->empregador->user_id == \Auth::user()->id
-            and is_null($vagaEmprego->aplicacoes)
+            and $vagaEmprego->aplicacoes->count() == 0
         ){
             return True;
         }
