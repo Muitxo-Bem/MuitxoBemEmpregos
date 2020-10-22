@@ -57,7 +57,7 @@ class CadastrarCandidatoTest extends TestCase
         $response = $this
                     ->followingRedirects()
                     ->post('candidatos', $dados)
-                    ->assertSee('Bem vindo'); //redirect de Bruno, tá indo pra pagina de show
+                    ->assertSee('E-Mail Address'); //redirect de Bruno, tá indo pra pagina de show
     }
 
     public function testCadastroCandidatoIncompleto(){
