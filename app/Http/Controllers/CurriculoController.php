@@ -98,7 +98,7 @@ class CurriculoController extends Controller
      */
     public function edit(Curriculo $curriculo)
     {
-        //
+        return view('Curriculo.edit')->with('curriculo',$curriculo);
     }
 
     /**
@@ -110,7 +110,31 @@ class CurriculoController extends Controller
      */
     public function update(Request $request, Curriculo $curriculo)
     {
-        //
+        // dd($request->all());
+        try{
+            \App\Validator\CurriculoValidator::validate($request->all());
+            \App\Validator\IdiomaValidator::validate($request->all());
+            \App\Validator\AreaFormacaoValidator::validate($request->all());
+
+            $curriculo->update(['experiencia' => $request->input('experiencia'),
+                                'info_adicional' => $request->input('info_adicional')
+                               ]);
+
+            $curriculo->idiomas()->update(['idioma' => $request->input('idioma'),
+                                       ]);
+            
+            $curriculo->areaFormacaos()->update(['area' => $request->input('area'), 
+                                            ]);
+
+            return view('Curriculo.show')->with('curriculo', $curriculo);
+
+        }catch(\App\Validator\ValidationException $exception){
+
+            // dd($exception->getValidator());
+            return redirect(route('curriculos.edit', $curriculo->id))
+            ->withErrors($exception->getValidator())
+            ->withInput();
+        }
     }
 
     /**
