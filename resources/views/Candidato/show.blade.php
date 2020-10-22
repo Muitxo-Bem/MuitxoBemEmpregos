@@ -15,17 +15,24 @@
         <h1>Bem vindo </h1> {{--{{$candidato->nome}} Mostrar o nome do usuário após ser cadastrado ou logado no sistema--}}
     </div>
 
+    
+    @can('update', $candidato)
     <div class="col-md-4">
     <a class="btn btn-primary" href="{{route('candidatos.edit', $candidato)}}" role="button">Editar Perfil</a>
     </div>
+    @endcan
 
+    @can('curriculoCheck', $candidato)
     <div class="col-md-4">
     <a class="btn btn-primary" href="{{route('curriculos.create', $candidato)}}" role="button">Adicionar Curriculo</a>
     </div>
+    @endcan
 
+    @can('portfolioCheck', $candidato)
     <div class="col-md-4">
     <a class="btn btn-primary" href="{{route('portfolios.create', $candidato)}}" role="button">Adicionar Portfólio</a>
     </div>
+    @endcan
 
     <div class="col-md-4">
         <a class="btn btn-danger" href="#" role="button">Apagar Perfil</a>
