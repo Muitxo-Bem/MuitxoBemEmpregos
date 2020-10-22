@@ -19,9 +19,15 @@
         </div>
         
         <div class = 'jumbotron' id='jumbotron'>
-            @can('curriculoCheck', $candidato)
+            @can('adicionarCurriculoCheck', $candidato)
                 <div class="col-md-4">
                     <a class="btn btn-success" href="{{route('curriculos.create', $candidato)}}" role="button">Adicionar Curriculo</a>
+                </div>
+            @endcan
+
+            @can('verCurriculoCheck', $candidato)
+                <div class="col-md-4">
+                    <a class="btn btn-success" href="{{route('curriculos.show', $candidato)}}" role="button">Ver Curriculo</a>
                 </div>
             @endcan
 
