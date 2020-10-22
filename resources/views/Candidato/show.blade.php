@@ -18,29 +18,31 @@
             <h1>Bem vindo </h1> {{--{{$candidato->nome}} Mostrar o nome do usuário após ser cadastrado ou logado no sistema--}}
         </div>
         
-        @can('update', $candidato)
-            <div class="col-md-4">
-                <a class="btn btn-primary" href="{{route('candidatos.edit', $candidato)}}" role="button">Editar Perfil</a>
-            </div>
-        @endcan
+        <div class = 'jumbotron' id='jumbotron'>
+            @can('curriculoCheck', $candidato)
+                <div class="col-md-4">
+                    <a class="btn btn-success" href="{{route('curriculos.create', $candidato)}}" role="button">Adicionar Curriculo</a>
+                </div>
+            @endcan
 
-        @can('curriculoCheck', $candidato)
-            <div class="col-md-4">
-                <a class="btn btn-success" href="{{route('curriculos.create', $candidato)}}" role="button">Adicionar Curriculo</a>
-            </div>
-        @endcan
+            @can('portfolioCheck', $candidato)
+                <div class="col-md-4">
+                    <a class="btn btn-success" href="{{route('portfolios.create', $candidato)}}" role="button">Adicionar Portfólio</a>
+                </div>
+            @endcan
 
-        @can('portfolioCheck', $candidato)
-            <div class="col-md-4">
-                <a class="btn btn-success" href="{{route('portfolios.create', $candidato)}}" role="button">Adicionar Portfólio</a>
-            </div>
-        @endcan
+            @can('update', $candidato)
+                <div class="col-md-4">
+                    <a class="btn btn-primary" href="{{route('candidatos.edit', $candidato)}}" role="button">Editar Perfil</a>
+                </div>
+            @endcan
 
-        @can('apagarCandidato', $candidato)
-            <div class="col-md-4">
-                <a class="btn btn-danger" href="{{route('candidatos.destroy', $candidato)}}" role="button">Apagar Perfil</a>
-            </div>
-        @endcan
+            @can('apagarCandidato', $candidato)
+                <div class="col-md-4">
+                    <a class="btn btn-danger" href="{{route('candidatos.destroy', $candidato)}}" role="button">Apagar Perfil</a>
+                </div>
+            @endcan
+        </div>
     </body>
     </html>
 @endsection
