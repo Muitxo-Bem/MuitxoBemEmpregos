@@ -31,15 +31,13 @@ class VagaEmpregoPolicy
         }
         return False;
     }
-    public function candView(User $user,VagaEmprego $vaga){
-        if((!\Auth::check()) or (\Auth::user()->tipo == 'candidato' and $vaga->ativa == 1 and !$vaga->aplicacoes()->get()->contains(\Auth::user()->candidato))){
-            return True;
-        }
-        return False;
-    }
+    
     public function update(User $user, VagaEmprego $vagaEmprego)
     {
-        if(\Auth::user()->tipo == 'empregador' and $vagaEmprego->empregador->user_id == \Auth::user()->id){
+        dd($vagaEmprego);
+        if(\Auth::check() and \Auth::user()->tipo == 'empregador' and $vagaEmprego->empregador->user_id == \Auth::user()->id
+            and is_null($vagaEmprego->aplicacoes)
+        ){
             return True;
         }
         return False;
@@ -47,7 +45,9 @@ class VagaEmpregoPolicy
 
     public function delete(User $user, VagaEmprego $vagaEmprego)
     {
-        if(\Auth::user()->tipo == 'empregador' and $vagaEmprego->empregador->user_id == \Auth::user()->id){
+        if(\Auth::check() and \Auth::user()->tipo == 'empregador' and $vagaEmprego->empregador->user_id == \Auth::user()->id
+            and is_null($vagaEmprego->aplicacoes)
+        ){
             return True;
         }
         return False;

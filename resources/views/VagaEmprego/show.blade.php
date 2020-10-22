@@ -3,7 +3,16 @@
     <link href="{{ asset('css/show_vagas.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-<h3 id='nome'>{{$vaga->nome}}</h3>
+<div class='container-fluid'>
+<div class='row'>
+<div class='col-md-6'>
+    <h3 id='nome'>{{$vaga->nome}}</h3>
+</div>
+<div class='col-md-6' id='editar'>
+    <h3 id='nome'>Botao de Editar</h3>
+</div>
+</div>
+</div>
 <div class="jumbotron " id='jumbotron'>
     <div class="container-fluid">
         <div class="row">
@@ -62,22 +71,29 @@
                     {{$vaga->empregador->nome}}
                     <h5>Email</h5>
                     <p>
-                    {{$vaga->empregador->email}}
+                    {{$vaga->empregador->user->email}}
                     </p>
                 </p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                @can('candView',$vaga)
+                @if(!\Auth::check())
                  <form action = "{{route('vagas.candidatar',['vaga' => $vaga])}}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-lg btn-outline-info btn-block">
                         Candidatar-se
                     </button>
                 </form>
+                @endif
+                @can('candidatar',$vaga)
+                <form action = "{{route('vagas.candidatar',['vaga' => $vaga])}}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-lg btn-outline-info btn-block">
+                        Candidatar-se
+                    </button>
+                </form>
                 @endcan
-
                 @can('close',$vaga)
                     <form action="{{route('vagas.close',[$vaga->id])}}" method="POST">
                         @csrf

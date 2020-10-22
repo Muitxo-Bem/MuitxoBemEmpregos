@@ -4,7 +4,9 @@
     margin-left: 2.375rem;
     margin-right: 2.375rem;
 }
-
+#editar{
+    padding-left: 20%;
+}
 #nome {
     font-weight: bold;
     margin-left: 2.375rem;
