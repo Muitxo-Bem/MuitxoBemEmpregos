@@ -26,7 +26,7 @@ Route::resource('enderecos','App\Http\Controllers\EnderecoController',['except' 
 Route::resource('telefones','App\Http\Controllers\TelefoneController',['except' => ['index']]);
 Route::resource('empregadores','App\Http\Controllers\EmpregadorController',['except' => ['index']]);
 Route::resource('portfolios','App\Http\Controllers\PortfolioController',['except' => ['index', 'create']]);
-Route::resource('curriculos','App\Http\Controllers\CurriculoController',['except' => ['index', 'create']]);
+Route::resource('curriculos','App\Http\Controllers\CurriculoController',['except' => ['index']]);
 Route::get('curriculos/create/{candidato}', 'App\Http\Controllers\CurriculoController@create')->name('curriculos.create');
 Route::get('portfolios/create/{candidato}', 'App\Http\Controllers\PortfolioController@create')->name('portfolios.create');
 Route::resource('area_formacaos','App\Http\Controllers\AreaFormacaoController',['except' => ['index']]);
