@@ -54,6 +54,26 @@
         </div>
 
         <div class="jumbotron " id='jumbotron'>
+            <h2 class="display-5">Contatos</h2>
+            <table class="table">
+                <thead class="black white-text">
+                  <tr>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefone primário</th>
+                    <th scope="col">Telefone secundário</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr class= 'info'>
+                        <td class='emailCandidato'>{{$candidato->user->email}}</td>
+                        <td class='telefonePrimarioCandidato'>{{$candidato->telefones()->get()->first()->telefone_primario}}</td>
+                        <td class='telefoneSecundarioCandidato'>{{$candidato->telefones()->get()->first()->telefone_secundario}}</td>
+                    </tr>
+                </tbody>
+              </table>
+        </div>
+
+        <div class="jumbotron " id='jumbotron'>
             <h2 class="display-5">Vagas que me candidatei</h2>
             <table class="table">
                 <thead class="black white-text">
@@ -77,8 +97,6 @@
                 @endforeach
                 </tbody>
               </table>
-              
-             
             </div>
     </body>
     </html>
