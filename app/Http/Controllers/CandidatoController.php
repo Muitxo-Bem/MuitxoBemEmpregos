@@ -128,9 +128,10 @@ class CandidatoController extends Controller
 
             $candidato->update(['nome' => $request->input('nome')
                                ]);
-
+            
+            $senhaHash = Hash::make($request->input('senha'));                  
             $candidato->user()->update(['email' => $request->input('email'),
-                                        'password' => $request->input('senha'),
+                                        'password' => $senhaHash,
                                        ]);
 
             $candidato->telefones()->update(['telefone_primario' => $request->input('telefone_primario'), 
