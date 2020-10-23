@@ -8,6 +8,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Cadastrar Candidato</title>
+        <link rel="stylesheet" href="{{asset('css/show_vagas.css')}}">
     </head>
     <body>
         <div class="col-md-8">
@@ -53,7 +54,7 @@
         </div>
 
         <div class="jumbotron " id='jumbotron'>
-            <h2 class="display-5">Vagas</h2>
+            <h2 class="display-5">Vagas que me candidatei</h2>
             <table class="table">
                 <thead class="black white-text">
                   <tr>
