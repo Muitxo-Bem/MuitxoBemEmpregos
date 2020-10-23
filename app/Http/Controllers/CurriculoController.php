@@ -66,7 +66,7 @@ class CurriculoController extends Controller
             return view('Curriculo.show')->with('curriculo', $curriculo);
 
         }catch(\App\Validator\ValidationException $exception){
-            return redirect(route('curriculos.create'))
+            return redirect(route('curriculos.create',\Auth::user()->candidato()->get()->first()->id))
             ->withErrors($exception->getValidator())
             ->withInput();
         }
