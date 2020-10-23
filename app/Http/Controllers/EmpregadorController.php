@@ -55,6 +55,7 @@ class EmpregadorController extends Controller
             $empregador->user_id = $user_id;
             $empregador->nome = $request->input('nome');
             $empregador->cpf = $request->input('cpf');
+            #$empregador->user()->associate($user);
             $empregador->save();
             $empregador_id = $empregador->id;
 
@@ -62,6 +63,7 @@ class EmpregadorController extends Controller
             $telefone->telefone_primario = $request->input('telefone_primario');
             $telefone->telefone_secundario = $request->input('telefone_secundario');
             $telefone->empregador_id = $empregador_id;
+            #$telefone->dono()->associate($empregador);
             $telefone->save();
 
             return redirect((route('login')));
@@ -79,9 +81,10 @@ class EmpregadorController extends Controller
      * @param  \App\Models\Empregador  $empregador
      * @return \Illuminate\Http\Response
      */
-    public function show(Empregador $empregador)
+    public function show(Empregador $empregadore)
     {
-        return view('Empregador.show')->with('empregador', $empregador);
+        #dd($empregador);
+        return view('Empregador.show')->with('empregador', $empregadore);
     }
 
     /**
@@ -90,9 +93,9 @@ class EmpregadorController extends Controller
      * @param  \App\Models\Empregador  $empregador
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empregador $empregador)
+    public function edit(Empregador $empregadore)
     {
-        return view('Empregador.show')->with('empregador', $empregador);
+        return view('Empregador.show')->with('empregador', $empregadore);
     }
 
     /**
@@ -102,30 +105,30 @@ class EmpregadorController extends Controller
      * @param  \App\Models\Empregador  $empregador
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empregador $empregador)
+    public function update(Request $request, Empregador $empregadore)
     {
         try{
             \App\Validator\EmpregadorValidator::validate($request->all());
             \App\Validator\UserValidator::validate($request->all());
             \App\Validator\TelefoneValidator::validate($request->all());
 
-            $empregador->update(['nome' => $request->input('nome')
+            $empregadore->update(['nome' => $request->input('nome')
             ]);
 
             $senhaHash = Hash::make($request->input('senha'));
-            $empregador->user()->update(['email' => $request->input('email'),
+            $empregadore->user()->update(['email' => $request->input('email'),
                 'password' => $senhaHash,
             ]);
 
-            $empregador->telefones()->update(['telefone_primario' => $request->input('telefone_primario'),
+            $empregadore->telefones()->update(['telefone_primario' => $request->input('telefone_primario'),
                 'telefone_secundario' => $request->input('telefone_secundario')
             ]);
 
-            return view('Empregador.show')->with('empregador', $empregador);
+            return view('Empregador.show')->with('empregador', $empregadore);
 
         }catch(\App\Validator\ValidationException $exception){
 
-            return redirect(route('empregador.edit', $empregador->id))
+            return redirect(route('empregador.edit', $empregadore->id))
                 ->withErrors($exception->getValidator())
                 ->withInput();
         }

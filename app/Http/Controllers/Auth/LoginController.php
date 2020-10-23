@@ -43,6 +43,7 @@ class LoginController extends Controller
             return route('candidatos.show',['candidato' => \Auth::user()->candidato()->get()->first()->id]);
         }
         elseif (\Auth::user()->tipo == 'empregador') {
+            //dd(\Auth::user()->empregador()->get()->first()->id);
             return route('empregadores.show',['empregadore' => \Auth::user()->empregador()->get()->first()->id]);
         }
     }
