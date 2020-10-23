@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Candidato;
 use App\Models\Empregador;
+use App\Models\Telefone;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -32,13 +33,20 @@ class CadastrarVagaEmpregoTest extends TestCase
     public function createLogins(){
         $usr = User::factory()->create(['tipo' => 'empregador', 'email' => 'empregador@vagaemprego.com']);
         $emp = Empregador::factory()->make();
+        $tele = Telefone::factory()->make();
         $emp->user_id = $usr->id;
         $emp->save();
+        $tele->empregador_id = $emp->id;
+        $tele->save();
+        
 
         $usr2 = User::factory()->create(['tipo' => 'candidato', 'email' => 'candidato@vagaemprego.com']);
         $cand = Candidato::factory()->make();
         $cand->user_id = $usr2->id;
         $cand->save();
+        $tele = Telefone::factory()->make();
+        $tele->candidato_id = $cand->id;
+        $tele->save();
     }
     public function logarEmpregador(){
         $dados['email'] = 'empregador@vagaemprego.com';

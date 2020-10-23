@@ -66,23 +66,23 @@ class CadastrarCurriculoTest extends TestCase
             ->assertDontSeeText('Informações do curriculo');
     }
 
-    public function testCurriculoSemInfoAdicional(){
-        $curriculo = $this->inicializarArrayCurriculo();
-        $curriculo['info_adicional'] = '';
-        $dados = ($curriculo);
-        $response = $this
-            ->followingRedirects()
-            ->post('curriculos', $dados)
-            ->assertSee('Campo Informações Adicionais não pode estar vazio');
-    }
+    // public function testCurriculoSemInfoAdicional(){
+    //     $curriculo = $this->inicializarArrayCurriculo();
+    //     $curriculo['info_adicional'] = '';
+    //     $dados = ($curriculo);
+    //     $response = $this
+    //         ->followingRedirects()
+    //         ->post('curriculos', $dados)
+    //         ->assertSee('Campo Informações Adicionais não pode estar vazio');
+    // }
 
-    public function testCurriculoSemExperiencia(){
-        $curriculo = $this->inicializarArrayCurriculo();
-        $curriculo['experiencia'] = '';
-        $dados = ($curriculo);
-        $response = $this
-            ->followingRedirects()
-            ->post('curriculos', $dados)
-            ->assertSee('Campo Experiência não pode estar vazio');
-    }
+    // public function testCurriculoSemExperiencia(){
+    //     $curriculo = $this->inicializarArrayCurriculo();
+    //     $curriculo['experiencia'] = '';
+    //     $dados = ($curriculo);
+    //     $response = $this
+    //         ->followingRedirects()
+    //         ->post('curriculos', $dados)
+    //         ->assertSee('Campo Experiência não pode estar vazio');
+    // }
 }
