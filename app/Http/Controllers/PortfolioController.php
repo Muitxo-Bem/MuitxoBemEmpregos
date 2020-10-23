@@ -69,7 +69,7 @@ class PortfolioController extends Controller
      */
     public function edit(Portfolio $portfolio)
     {
-        //
+        return view('Portfolio.edit')->with('portfolio',$portfolio);
     }
 
     /**
@@ -81,7 +81,19 @@ class PortfolioController extends Controller
      */
     public function update(Request $request, Portfolio $portfolio)
     {
-        //
+        try{
+            \App\Validator\PortfolioValidator::validate($request->all());;
+
+            $portfolio->update(['link' => $request->input('link'),
+                               ]);
+
+            return view('Portfolio.show')->with('portfolio', $portfolio);
+
+        }catch(\App\Validator\ValidationException $exception){
+            return redirect(route('portfolios.edit', $portfolio->id))
+            ->withErrors($exception->getValidator())
+            ->withInput();
+        }
     }
 
     /**

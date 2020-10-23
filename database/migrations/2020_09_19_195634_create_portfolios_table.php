@@ -15,6 +15,7 @@ class CreatePortfoliosTable extends Migration
     {
         Schema::create('portfolios', function (Blueprint $table) {
             $table->unsignedBigInteger('candidato_id');
+            $table->id();
             $table->string('link')->unique();
             //$table->blob('pdf-porfolio');
 
