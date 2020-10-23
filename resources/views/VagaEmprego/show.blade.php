@@ -124,12 +124,12 @@
                                             <td><img id = 'img-vaga' src="https://image.freepik.com/vetores-gratis/fundo-de-vaga-de-emprego-na-mao-desenhada-estilo_23-2147867567.jpg" alt="img"></td>
                                             <td class='nomeCandidato'><a href="{{route('candidatos.show',$candidato->id)}}">{{$candidato->nome}}</a></td>
                                             @if(!is_null($candidato->curriculo))
-                                            <td class='nomeCandidato'><a href="{{route('curriculos.show',$candidato->curriculo->id)}}">{{$candidato->curriculo}}</a></td>
+                                            <td class='nomeCandidato'><a href="{{route('curriculos.show',$candidato->curriculo->id)}}">Curriculo</a></td>
                                             @else
                                             <td class='nomeCandidato'><p href="#">Sem Currículo</p></td>
                                             @endif
                                             @if(!is_null($candidato->portfolio))
-                                            <td class='nomeCandidato'><a href="{{route('portfolios.show',$candidato->portfolio->id)}}">{{$candidato->portfolio}}</a></td>
+                                            <td class='nomeCandidato'><a href="{{route('portfolios.show',$candidato->portfolio->id)}}">Portfólio</a></td>
                                             @else
                                             <td class='nomeCandidato'><p href="">Sem Portfólio</p></td>
 
