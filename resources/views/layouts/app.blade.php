@@ -65,7 +65,16 @@
                                     @endif
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div id = 'drop' class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if(Auth::user()->tipo == 'candidato')
+                                        <a class='dropdown-item' href="{{route('candidatos.show',Auth::user()->candidato->id)}}">
+                                        Perfil
+                                        </a>
+                                    @elseif(Auth::user()->tipo == 'empregador')
+                                        <a class='dropdown-item' href="{{route('empregadores.show',Auth::user()->empregador->id)}}">
+                                        Perfil
+                                        </a>        
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
