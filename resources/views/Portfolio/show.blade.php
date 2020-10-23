@@ -1,5 +1,6 @@
 @extends('layouts/app')
 @section('head')
+<link href="{{asset('css/show_portfolio.css')}}" rel='stylesheet'>
 @endsection
 @section('content')
 <h3 text='Portfólio'></h3>
@@ -7,13 +8,19 @@
 <div class="jumbotron " id='jumbotron'>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <h3>
                     Portfólio
                 </h3>
                 <p>
-                    <a href='{{$portfolio->link}}'>Portfólio</a>
+                    <a href='{{$portfolio->link}}'>{{$portfolio->link}}</a>
                 </p>
+                <div class='col-md-12' id='editar'>
+                    <form action="{{route('portfolios.edit',['portfolio' => $portfolio->id])}}" method="GET"> 
+                    <button type="submit" class="btn btn-secondary" >Editar Portfólio</button>
+            </form>
+                </div>
+        </div>
             </div>
         </div>
     </div>
