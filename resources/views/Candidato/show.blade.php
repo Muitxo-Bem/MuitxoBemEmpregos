@@ -27,9 +27,15 @@
                 </div>
             @endcan
 
-            @can('portfolioCheck', $candidato)
+            @can('adicionarPortfolioCheck', $candidato)
                 <div class="col-md-4">
                     <a class="btn btn-success" href="{{route('portfolios.create', $candidato)}}" role="button">Adicionar Portfólio</a>
+                </div>
+            @endcan
+
+            @can('verPortfolioCheck', $candidato)
+                <div class="col-md-4">
+                    <a class="btn btn-success" href="{{route('portfolios.show', $candidato)}}" role="button">Ver Portfólio</a>
                 </div>
             @endcan
 
