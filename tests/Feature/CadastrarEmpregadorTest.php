@@ -32,7 +32,7 @@ class CadastrarEmpregadorTest extends TestCase
                                              'telefone_secundario'=>'12345678910',
         ]                       )->toArray();
         $dados = array_merge($empNew,$telNew);
-        $response = $this->followingRedirects()->post('/empregadores',$dados)->assertSee('Empregador cadastrado');
+        $response = $this->followingRedirects()->post('/empregadores',$dados)->assertSee('Login');
 
     }
     public function testCadastroEmpregadorDadosIncompletos(){
