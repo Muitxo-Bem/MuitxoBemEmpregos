@@ -32,4 +32,14 @@ class EmpregadorPolicy
             return True;
         }
     }
+
+    public function listarVagasCheck(User $user, Empregador $empregador)
+    {
+        if(\Auth::check() and \Auth::user()->tipo == 'empregador' and \Auth::user()->empregador->vagaEmprego !=NULL){
+            return False;
+        }
+        else{
+            return True;
+        }
+    }
 }
