@@ -10,11 +10,13 @@
         <div class='col-md-6'>
             <h3 id='nome'>{{$curriculo->dono->nome}}</h3>
         </div>
+        @can('editCurriculoCheck', $curriculo)
         <div class='col-md-6' id='editar'>
             <form action="{{route('curriculos.edit',['curriculo' => $curriculo->id])}}" method="GET"> 
                 <button type="submit" class="btn btn-secondary">Editar Curriculo</button>
             </form>
         </div>
+        @endCan
     </div>
 </div>
 <div class="jumbotron " id='jumbotron'>
