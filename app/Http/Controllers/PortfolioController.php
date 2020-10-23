@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Portfolio;
+use App\Models\Candidato;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
@@ -22,8 +23,9 @@ class PortfolioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Candidato $candidato)
     {
+        $this->authorize('create',$candidato);
         return view('Portfolio.create');
     }
 
