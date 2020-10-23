@@ -28,7 +28,7 @@ class CurriculoController extends Controller
      */
     public function create(Candidato $candidato)
     {
-        $this->authorize('create',$candidato);
+        $this->authorize('adicionarCurriculoCheck',$candidato);
         return view('Curriculo.create');
     }
 

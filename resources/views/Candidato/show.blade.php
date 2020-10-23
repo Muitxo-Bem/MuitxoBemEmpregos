@@ -24,7 +24,7 @@
 
             @can('verCurriculoCheck', $candidato)
                 <div class="col-md-4">
-                    <a class="btn btn-success" href="{{route('curriculos.show', $candidato)}}" role="button">Ver Curriculo</a>
+                    <a class="btn btn-success" href="{{route('curriculos.show', $candidato->curriculo->id)}}" role="button">Ver Curriculo</a>
                 </div>
             @endcan
 
@@ -36,7 +36,7 @@
 
             @can('verPortfolioCheck', $candidato)
                 <div class="col-md-4">
-                    <a class="btn btn-success" href="{{route('portfolios.show', $candidato)}}" role="button">Ver Portfólio</a>
+                    <a class="btn btn-success" href="{{route('portfolios.show', $candidato->portfolio->id)}}" role="button">Ver Portfólio</a>
                 </div>
             @endcan
 

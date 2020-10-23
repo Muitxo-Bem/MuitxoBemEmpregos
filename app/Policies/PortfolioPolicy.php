@@ -10,13 +10,13 @@ class PortfolioPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user, Candidato $candidato)
+    public function editPortfolioCheck(User $user, Portfolio $portfolio)
     {
-        if(\Auth::check() and \Auth::user()->tipo == 'candidato' and $candidato->portfolio !=NULL){
-            return False;
+        if(\Auth::check() and \Auth::user()->tipo == 'candidato' and \Auth::user()->candidato->portfolio->id == $portfolio->id){
+            return True;
         }
         else{
-            return True;
+            return False;
         }
     }
 }

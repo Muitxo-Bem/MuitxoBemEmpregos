@@ -15,11 +15,13 @@
                 <p>
                     <a href='{{$portfolio->link}}'>{{$portfolio->link}}</a>
                 </p>
+                @can('editPortfolioCheck', $portfolio)
                 <div class='col-md-12' id='editar'>
                     <form action="{{route('portfolios.edit',['portfolio' => $portfolio->id])}}" method="GET"> 
                     <button type="submit" class="btn btn-secondary" >Editar Portfólio</button>
-            </form>
+                    </form>
                 </div>
+                @endCan
         </div>
             </div>
         </div>

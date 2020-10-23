@@ -11,13 +11,13 @@ class CurriculoPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user, Candidato $candidato)
+    public function editCurriculoCheck(User $user, Curriculo $curriculo)
     {
-        if(\Auth::check() and \Auth::user()->tipo == 'candidato' and $candidato->curriculo !=NULL){
-            return False;
+        if(\Auth::check() and \Auth::user()->tipo == 'candidato' and \Auth::user()->candidato->curriculo->id == $curriculo->id){
+            return True;
         }
         else{
-            return True;
+            return False;
         }
     }
 }
