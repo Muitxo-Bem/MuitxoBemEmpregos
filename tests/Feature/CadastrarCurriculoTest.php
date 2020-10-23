@@ -49,6 +49,7 @@ class CadastrarCurriculoTest extends TestCase
         $dados['password'] = 'password';
         $response = $this->followingRedirects()
                     ->post('login',$dados);
+        return $usr->id;
     }
     public function inicializarArrayCandidato(){
         $candidato = Candidato::factory()->make()->toArray();
@@ -60,29 +61,33 @@ class CadastrarCurriculoTest extends TestCase
 
     public function testCadastroCurriculo(){ // Verificar esse teste
         $curriculo = $this->inicializarArrayCurriculo();
+        $candidato = $this->logar();
         $response = $this
             ->followingRedirects()
-            ->post('curriculos', $curriculo)
+            ->post(route('curriculos.store',$candidato), $curriculo)
             ->assertDontSeeText('Informações do curriculo');
     }
 
     public function testCurriculoSemInfoAdicional(){
         $curriculo = $this->inicializarArrayCurriculo();
+        $candidato = $this->logar();
         $curriculo['info_adicional'] = '';
         $dados = ($curriculo);
         $response = $this
             ->followingRedirects()
-            ->post('curriculos', $dados)
+            ->post(route('curriculos.store',$candidato), $dados)
             ->assertSee('Campo Informações Adicionais não pode estar vazio');
     }
 
     public function testCurriculoSemExperiencia(){
         $curriculo = $this->inicializarArrayCurriculo();
+        $candidato = $this->logar();
+
         $curriculo['experiencia'] = '';
         $dados = ($curriculo);
         $response = $this
             ->followingRedirects()
-            ->post('curriculos', $dados)
+            ->post(route('curriculos.store',$candidato), $dados)
             ->assertSee('Campo Experiência não pode estar vazio');
     }
 }
