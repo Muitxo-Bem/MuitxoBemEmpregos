@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curriculo;
+use App\Models\Candidato;
 use App\Models\Idioma;
 use App\Models\AreaFormacao;
 use Illuminate\Http\Request;
@@ -25,8 +26,9 @@ class CurriculoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Candidato $candidato)
     {
+        $this->authorize('create',$candidato);
         return view('Curriculo.create');
     }
 

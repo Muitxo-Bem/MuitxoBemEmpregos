@@ -108,6 +108,7 @@ class CandidatoController extends Controller
      */
     public function edit(Candidato $candidato)
     {
+        $this->authorize('update',$candidato);
         return view('Candidato.editar')->with('candidato', $candidato);
     }
 
