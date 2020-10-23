@@ -162,8 +162,5 @@ class CandidatoController extends Controller
      * @param  \App\Models\Candidato  $candidato
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Candidato $candidato)
-    {
-        //
-    }
+  
 }
