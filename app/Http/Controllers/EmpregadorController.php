@@ -95,7 +95,7 @@ class EmpregadorController extends Controller
      */
     public function edit(Empregador $empregadore)
     {
-        return view('Empregador.show')->with('empregador', $empregadore);
+        return view('Empregador.editar')->with('empregador', $empregadore);
     }
 
     /**
