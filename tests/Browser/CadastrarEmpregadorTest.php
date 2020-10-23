@@ -33,7 +33,7 @@ class CadastrarEmpregadorTest extends DuskTestCase
                 ->type('telefone_secundario','11111111111')
                 ->press('Cadastrar')
                 ->screenshot('Cadastro Empregador')
-                ->pause(1000)->assertSee('Empregador cadastrado');
+                ->pause(1000)->assertSee('Login');
 
         });
     }
