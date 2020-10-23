@@ -64,7 +64,7 @@ class EmpregadorController extends Controller
             $telefone->empregador_id = $empregador_id;
             $telefone->save();
 
-            return 'Empregador cadastrado';
+            return redirect((route('login')));
 
         }catch(\App\Validator\ValidationException $exception){
             return redirect(route('empregadores.create'))
@@ -81,7 +81,7 @@ class EmpregadorController extends Controller
      */
     public function show(Empregador $empregador)
     {
-        return 'Empregador Show';
+        return view('Empregador.show')->with('empregador', $empregador);
     }
 
     /**
@@ -92,7 +92,7 @@ class EmpregadorController extends Controller
      */
     public function edit(Empregador $empregador)
     {
-        //
+        return view('Empregador.show')->with('empregador', $empregador);
     }
 
     /**
@@ -104,7 +104,31 @@ class EmpregadorController extends Controller
      */
     public function update(Request $request, Empregador $empregador)
     {
-        //
+        try{
+            \App\Validator\EmpregadorValidator::validate($request->all());
+            \App\Validator\UserValidator::validate($request->all());
+            \App\Validator\TelefoneValidator::validate($request->all());
+
+            $empregador->update(['nome' => $request->input('nome')
+            ]);
+
+            $senhaHash = Hash::make($request->input('senha'));
+            $empregador->user()->update(['email' => $request->input('email'),
+                'password' => $senhaHash,
+            ]);
+
+            $empregador->telefones()->update(['telefone_primario' => $request->input('telefone_primario'),
+                'telefone_secundario' => $request->input('telefone_secundario')
+            ]);
+
+            return view('Empregador.show')->with('empregador', $empregador);
+
+        }catch(\App\Validator\ValidationException $exception){
+
+            return redirect(route('empregador.edit', $empregador->id))
+                ->withErrors($exception->getValidator())
+                ->withInput();
+        }
     }
 
     /**
