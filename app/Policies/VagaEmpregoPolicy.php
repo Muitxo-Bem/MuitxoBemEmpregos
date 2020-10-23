@@ -52,6 +52,22 @@ class VagaEmpregoPolicy
         return False;
     }
 
+    public function verVagaDeslogado(User $user, VagaEmprego $vagaEmprego){
+        if((!\Auth::check()) and $vagaEmprego->ativa == 0){
+            return False;
+        }
+        return True;
+    }
+    public function verVaga(User $user,VagaEmprego $vagaEmprego){
+        if(\Auth::check() and \Auth::user()->tipo == 'empregador' and $vagaEmprego->empregador->user_id == \Auth::user()->id){
+            return True;
+        }
+        elseif(\Auth::check() and \Auth::user()->tipo == 'candidato' and $vagaEmprego->ativa == 1){
+            return True;
+        }
+        return False;
+    }
+
 
   
 }

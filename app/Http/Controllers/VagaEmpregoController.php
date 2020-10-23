@@ -71,6 +71,8 @@ class VagaEmpregoController extends Controller
      */
     public function show(VagaEmprego $vaga)
     {
+        $this->authorize('verVagaDeslogado',$vaga);
+        $this->authorize('verVaga',$vaga);
         return view('VagaEmprego.show')->with('vaga',$vaga);
     }
 
