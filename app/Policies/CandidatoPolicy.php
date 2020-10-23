@@ -58,11 +58,11 @@ class CandidatoPolicy
         }
     }
 
-    public function apagarCandidato(User $user, Candidato $candidato){
-        if(\Auth::check() and \Auth::user()->tipo == 'candidato' and $candidato->user_id == \Auth::user()->id){
-            return True;
-        }else{
-            return False;
-        }
-    }
+    // public function apagarCandidato(User $user, Candidato $candidato){
+    //     if(\Auth::check() and \Auth::user()->tipo == 'candidato' and $candidato->user_id == \Auth::user()->id){
+    //         return True;
+    //     }else{
+    //         return False;
+    //     }
+    // }
 }

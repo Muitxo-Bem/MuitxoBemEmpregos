@@ -43,11 +43,11 @@
                 </div>
             @endcan
 
-            @can('apagarCandidato', $candidato)
+            {{-- @can('apagarCandidato', $candidato)
                 <div class="col-md-4">
                     <a class="btn btn-danger" href="{{route('candidatos.destroy', $candidato)}}" role="button">Apagar Perfil</a>
                 </div>
-            @endcan
+            @endcan --}}
         </div>
     </body>
     </html>
