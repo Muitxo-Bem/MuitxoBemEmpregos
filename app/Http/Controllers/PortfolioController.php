@@ -25,7 +25,7 @@ class PortfolioController extends Controller
      */
     public function create(Candidato $candidato)
     {
-        $this->authorize('create',$candidato);
+        $this->authorize('adicionarPortfolioCheck',$candidato);
         return view('Portfolio.create');
     }
 
@@ -69,8 +69,9 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function edit(Portfolio $portfolio)
+    public function edit(Portfolio $portfolio, Candidato $candidato)
     {
+        // $this->authorize('update',$candidato);
         return view('Portfolio.edit')->with('portfolio',$portfolio);
     }
 

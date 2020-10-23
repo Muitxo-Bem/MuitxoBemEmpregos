@@ -20,11 +20,11 @@ class CandidatoPolicy
 
     public function adicionarCurriculoCheck(User $user, Candidato $candidato)
     {
-        if(\Auth::check() and \Auth::user()->tipo == 'candidato' and $candidato->curriculo !=NULL){
-            return False;
+        if(\Auth::check() and \Auth::user()->tipo == 'candidato' and $candidato->curriculo == NULL){
+            return True;
         }
         else{
-            return True;
+            return False;
         }
     }
 
