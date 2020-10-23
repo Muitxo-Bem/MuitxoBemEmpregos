@@ -121,10 +121,7 @@ class VagaEmpregoController extends Controller
      * @param  \App\Models\VagaEmprego  $vagaEmprego
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VagaEmprego $vaga)
-    {
-        //
-    }
+    
     public function close(VagaEmprego $vaga){
         // dd($vaga);
         $this->authorize('close',$vaga);
