@@ -14,7 +14,7 @@
     <body>
 
         <div class="col-md-8">
-            <h1>Bem vindo </h1> {{--{{$empregador>nome}} Mostrar o nome do usuário após ser cadastrado ou logado no sistema--}}
+            <h1>Bem vindo {{$empregador->nome}}</h1>
         </div>
 
         @can('vagaEmpregoCheck', $empregador)

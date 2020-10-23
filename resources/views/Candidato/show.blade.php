@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="col-md-8">
-            <h1>Bem vindo </h1> {{--{{$candidato->nome}} Mostrar o nome do usuário após ser cadastrado ou logado no sistema--}}
+            <h1>Bem vindo {{$candidato->nome}}</h1> {{--{{$candidato->nome}} Mostrar o nome do usuário após ser cadastrado ou logado no sistema--}}
         </div>
         
         <div class = 'jumbotron' id='jumbotron'>
