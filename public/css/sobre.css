@@ -1,0 +1,17 @@
+#jumbotron{
+    text-align: center;
+
+}
+#inside{
+    text-align: center;
+    margin-top: 40px;
+}
+#inside h4 {
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+.foto{
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+}

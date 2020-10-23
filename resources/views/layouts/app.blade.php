@@ -52,7 +52,7 @@
                             @endif
                             @if(Route::is('/'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('sobre') }}">{{ __('Sobre') }}</a>
+                                    <a class="nav-link" href="{{ route('sobre') }}">{{ __('Sobre Nós') }}</a>
                                 </li>
                             @endif
                         @else
