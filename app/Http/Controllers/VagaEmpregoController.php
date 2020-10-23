@@ -25,8 +25,12 @@ class VagaEmpregoController extends Controller
      */
     public function create()
     {
-        $this->authorize('create',VagaEmprego::class);
-        return view('VagaEmprego.create');
+        if(\Auth::check()){
+            $this->authorize('create',VagaEmprego::class);
+            return view('VagaEmprego.create');
+        }
+        
+        return redirect()->route('login');
     }
 
     /**
@@ -37,6 +41,7 @@ class VagaEmpregoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create',VagaEmprego::class);
         try{
             \App\Validator\VagaEmpregoValidator::validate($request->all());
             //dd($request->all());
@@ -84,6 +89,7 @@ class VagaEmpregoController extends Controller
      */
     public function edit(VagaEmprego $vaga)
     {
+        $this->authorize('update',$vaga);
         return view('VagaEmprego.edit')->with('vaga',$vaga);
     }
 
@@ -96,6 +102,8 @@ class VagaEmpregoController extends Controller
      */
     public function update(Request $request, VagaEmprego $vaga)
     {
+        $this->authorize('update',$vaga);
+
         try{
             \App\Validator\VagaEmpregoValidator::validate($request->all());
 
