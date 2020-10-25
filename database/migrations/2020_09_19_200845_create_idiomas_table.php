@@ -14,6 +14,7 @@ class CreateIdiomasTable extends Migration
     public function up()
     {
         Schema::create('idiomas', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('curriculo_id');
             $table->string('idioma');
 
