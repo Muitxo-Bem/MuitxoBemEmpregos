@@ -14,6 +14,7 @@ class CreateSubAreasTable extends Migration
     public function up()
     {
         Schema::create('sub_areas', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('area_formacao_id');
             $table->string('nome');
 

@@ -30,3 +30,5 @@ before_script:
 script:
   - php artisan test
   - php artisan dusk
+  - php artisan migrate:fresh
+  - php artisan db:seed

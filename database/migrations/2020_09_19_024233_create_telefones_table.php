@@ -14,6 +14,7 @@ class CreateTelefonesTable extends Migration
     public function up()
     {
         Schema::create('telefones', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('candidato_id')->nullable();
             $table->unsignedBigInteger('empregador_id')->nullable();
             $table->string('telefone_primario')->unique();
